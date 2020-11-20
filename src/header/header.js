@@ -21,7 +21,7 @@ export default function header() {
                 </button>
             </div>
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <div className="text-sm flex justify-center lg:flex-grow">
+                <div className="text-sm flex justify-center lg:justify-start lg:flex-grow">
 						 {/* <Link to="./about"> */}
                          
 							 <a className="block mt-4 lg:inline-block lg:mt-0 text-black-200 border-red-500  mr-4" href="#about">
