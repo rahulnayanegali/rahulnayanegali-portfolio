@@ -1,5 +1,6 @@
 export const ProjectsList = [
     {
+        id: 1,
         repoName: 'react-socialapp',
         description: 'A social media app, where we can post, comment, delete, like and dislike a tweet.',
         liveUrl: 'https://twitter-clone-5df18.web.app',
@@ -7,12 +8,14 @@ export const ProjectsList = [
 
     },
     {
+        id: 2,
         repoName: 'declutterJsBlog',
         description: 'This app is built using HTML, CSS and Plane Javascript',
         liveUrl: 'https://declutterjs.netlify.app',
         hashTags:['javascript', 'html', 'css'],
     },
     {
+        id: 3,
         repoName: 'rahulnayanegali-portfolio',
         description: 'A quick tour of my work in React, Redux, Javascript and HTML/CSS',
         liveUrl: 'https://rahulnayanegali.netlify.app',

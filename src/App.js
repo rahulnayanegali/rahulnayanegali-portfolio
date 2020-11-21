@@ -4,9 +4,10 @@ import Header from './header/header';
 import About from './about/about';
 import Projects from './projects/projects';
 import Contact from './contact/contact';
-import HeaderRight from './hero/HeaderRight';
 
-import { BrowserRouter as Router,  Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router,
+    //   Route, Switch
+} from 'react-router-dom'
 
 export default function App() {
     return (

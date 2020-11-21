@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
+    // BrowserRouter as Router,
+    // Switch,
+    // Route,
 	Link  } from 'react-router-dom';
-import About from '../about/about';
+// import About from '../about/about';
 
 export default function header() {
     return (
