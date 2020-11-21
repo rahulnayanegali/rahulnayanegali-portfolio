@@ -5,7 +5,7 @@ import githubIcon from '../images/github.svg'
 export default function contact() {
     return (
         <Fragment>
-            <div className=" flex items-center sm:flex-row flex-col">
+            <div id="contact" className=" flex items-center sm:flex-row flex-col">
                 <p className="text-md text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-500 sm:py-2 sm:mt-0 mt-4 flex flex-col items-center md:items-start">
                     <a className="text-gray-700 ml-1 hover:no-underline">Rahul Nayanegali</a>
                     <a className="text-gray-700 ml-1 hover:no-underline">Made using React and Tailwind CSS</a>

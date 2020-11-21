@@ -2,15 +2,21 @@ export const ProjectsList = [
     {
         repoName: 'react-socialapp',
         description: 'A social media app, where we can post, comment, delete, like and dislike a tweet.',
-        liveUrl: 'https://twitter-clone-5df18.web.app/',
+        liveUrl: 'https://twitter-clone-5df18.web.app',
         hashTags:['react','redux', 'redux-thunk', 'material-ui'],
 
     },
     {
         repoName: 'declutterJsBlog',
         description: 'This app is built using HTML, CSS and Plane Javascript',
-        liveUrl: 'https://declutterjs.netlify.app/',
+        liveUrl: 'https://declutterjs.netlify.app',
         hashTags:['javascript', 'html', 'css'],
+    },
+    {
+        repoName: 'rahulnayanegali-portfolio',
+        description: 'A quick tour of my work in React, Redux, Javascript and HTML/CSS',
+        liveUrl: 'https://rahulnayanegali.netlify.app',
+        hashTags:['reactjs', 'tailwindcss'],
     }
 ]
     /*

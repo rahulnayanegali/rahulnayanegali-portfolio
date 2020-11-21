@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Project from './project';
 import { Element } from 'react-scroll'
 
-export default function works() {
+export default function Projects() {
     return (
         <Fragment>
             {/* h-screen for 100vh */}
