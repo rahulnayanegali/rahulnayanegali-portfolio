@@ -16,7 +16,7 @@ export default function Project(props) {
                         <div  className="max-w-sm rounded overflow-hidden shadow-lg">
                             {/* <img class="block h-auto w-full" src={thumbnail} alt="Sunset in the mountains" /> */}
                             <div className="px-6 py-4">
-                                <div className="font-bold text-xl mb-2"><a href={repoUrl} target="_blank" rel="noopener noreferrer">{project.repoName}</a></div>
+                                <div className="font-semibold text-xl mb-2"><a href={repoUrl} target="_blank" rel="noopener noreferrer">{project.repoName}</a></div>
                                 <p className="text-gray-700 text-base">
                                     {project.description}
                                 </p>

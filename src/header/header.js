@@ -24,7 +24,7 @@ export default function header() {
                 <div className="text-sm flex justify-center lg:justify-start lg:flex-grow">
 						 {/* <Link to="./about"> */}
                          
-							 <a className="block mt-4 lg:inline-block lg:mt-0 text-black-200 border-red-500  mr-4" href="#about">
+							 <a className="block mt-4 lg:inline-block lg:mt-0 text-gray-700 border-red-500  mr-4" href="#about">
                                  <span className="text-2xl">
                                  About
                                  </span>
@@ -32,13 +32,13 @@ export default function header() {
 							</a>
 						  {/* </Link> */}
 						  {/* <Link to="projects"> */}
-							<a className="block mt-4 lg:inline-block lg:mt-0 text-black-200  mr-4" href="#projects">
+							<a className="block mt-4 lg:inline-block lg:mt-0 text-gray-700  mr-4" href="#projects">
 									<span className="text-2xl">
                                     Projects </span>
 							</a>
 							{/* </Link> */}
 							{/* <Link to="./contact"> */}
-                    <a className="block mt-4 lg:inline-block lg:mt-0 text-black-200 mr-4" href='#contact'>
+                    <a className="block mt-4 lg:inline-block lg:mt-0 text-gray-700 mr-4" href='#contact'>
                         <span className="text-2xl">Contact</span>
                     </a>
 						  {/* </Link> */}
