@@ -11,17 +11,13 @@ export default function contact() {
                     <a className="text-gray-700 ml-1 hover:no-underline">Made using React and Tailwind CSS</a>
                 </p>
                 <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                    <a className="text-gray-700 mx-2 text-xl transform hover:scale-150 transition ease-in-out duration-300" href="https://www.linkedin.com">
+                    <a className="text-gray-700 mx-2 text-xl transform hover:scale-150 transition ease-in-out duration-300" href="https://www.linkedin.com/in/rahul-anand-nayanegali-a026a1b9/">
                             <img style={{width: 50, height: 50}} className="" src={linkedinIcon} alt="https://freeicons.io/social-media-icons-4/linkedin-icon-15649#" />
                     </a>
-                    <a className="text-gray-700 mx-2 text-xl transform hover:scale-150 transition ease-in-out duration-300" href="https://www.github.com">
+                    <a className="text-gray-700 mx-2 text-xl transform hover:scale-150 transition ease-in-out duration-300" href="https://github.com/rahulnayanegali">
                             <img style={{width: 48, height: 48}} className="" src={githubIcon} alt="https://freeicons.io/common-style-icons-8/github-icon-11674" />
                     </a>
                 </span>
-                
-                    
-              
-                
             </div>
             {/* h-screen for 100vh */}
             {/* <div id="contact" className="flex justify-between">

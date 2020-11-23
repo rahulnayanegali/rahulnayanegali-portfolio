@@ -9,10 +9,10 @@ export const ProjectsList = [
     },
     {
         id: 2,
-        repoName: 'declutterJsBlog',
-        description: 'This app is built using HTML, CSS and Plane Javascript',
-        liveUrl: 'https://declutterjs.netlify.app',
-        hashTags:['javascript', 'html', 'css'],
+        repoName: 'cards-match-game',
+        description: `A cards matching game using react to showcase redux state management on card's flip and matching.`,
+        liveUrl: 'https://cards-match-react.netlify.app',
+        hashTags:['reactjs', 'redux', 'css'],
     },
     {
         id: 3,
@@ -20,7 +20,16 @@ export const ProjectsList = [
         description: 'A quick tour of my work in React, Redux, Javascript and HTML/CSS',
         liveUrl: 'https://rahulnayanegali.netlify.app',
         hashTags:['reactjs', 'tailwindcss'],
-    }
+    },
+    {
+        id: 4,
+        repoName: 'declutterJsBlog',
+        description: 'This app is built using HTML, CSS and Plane Javascript',
+        liveUrl: 'https://declutterjs.netlify.app',
+        hashTags:['javascript', 'html', 'css'],
+    },
+    
+    
 ]
     /*
     {
