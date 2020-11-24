@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
 import emailjs from 'emailjs-com';
 import {useForm} from 'react-hook-form';
+import { data } from 'autoprefixer';
 
 export default function ContactUs() {
     // const [formData, setFormData] = useState({})
+    const [success, setSuccess] = useState(false)
+    const [failure, setFailure] = useState(false)
+    const [progress, setProgress] = useState(false)
     const { register, handleSubmit, errors, reset } = useForm()
+    
 
     // const updateInput = e => {
     //     setFormData({
@@ -13,27 +18,46 @@ export default function ContactUs() {
     //     })
     // }
 
+    const handleSuccess = React.useCallback(() => {
+        setSuccess(success => !success)
+        handleProgress()
+    }, []);
+
+    const handleFailure = React.useCallback(() =>{
+        setFailure(failure => !failure)
+        handleProgress()
+    }, []);
+
+    const handleProgress = React.useCallback(() => {
+        console.log('progress')
+        setProgress(progress => !progress)
+    }, []);
+
   function sendEmail(data) {
+      handleProgress()
     // e.preventDefault();
       console.log(data)
-        emailjs.send('default_service', 'template_go19blh', data, 'user_FqD3kBuBBPP1Mm1HYrgXD')
+        emailjs.send('default_service', 'template_go19blh', data, 'user_FqD3kBuBBPP1Mm1HYrgX')
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
+           handleSuccess()
         }, function(error) {
            console.log('FAILED...', error);
+           handleFailure()
         });
     
         reset() 
   }
 
   return (
-  <form className="w-full max-w-lg mb-4 px-6 py-4 shadow-lg" onSubmit={handleSubmit(sendEmail)}>
+  <form className="w-full max-w-lg mb-4 px-6 py-4 shadow-lg" onSubmit={handleSubmit(sendEmail)}
+            success={success} failure={failure}>
     <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
             Full Name
         </label>
-        <input name="name" ref={register({ required: "Full Name Required"})} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Full Name" />
+        <input name="name" ref={register({ required: "Name Required"})} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Full Name" />
         {errors.name && <p className="text-red-500 text-xs italic">{errors.name.message}.</p>}
         </div>
     </div>
@@ -53,11 +77,16 @@ export default function ContactUs() {
         </label>
         <textarea name="message" ref={register({ required: "Message Required"})} className=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="message"></textarea>
         {errors.message && <p className="text-red-500 text-xs italic">{errors.message.message}.</p>}
+            {success ? <p className="text-green-500 text-xs italic"><span className="font-bold">Thank you!</span><br/>Your message has been successfully sent. I will contact you very soon!</p> : 
+                failure ? <p className="text-red-500 text-xs italic">Something went wrong, please try again.</p> : null}
         </div>
     </div>
     <div className="md:flex md:items-center">
         <div className="md:w-1/3">
-        <button className="shadow bg-gray-700 hover:bg-black focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+        <button disabled={progress}  className={`shadow ${progress ? `bg-gray-400`: `bg-gray-700`}  focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded`} type="submit">
+            {/* <svg className="animate-spin" width="60" height="30" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+            </svg> */}
             Send Message
         </button>
         </div>
