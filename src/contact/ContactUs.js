@@ -37,7 +37,7 @@ export default function ContactUs() {
       handleProgress()
     // e.preventDefault();
       console.log(data)
-        emailjs.send('default_service', 'template_go19blh', data, 'user_FqD3kBuBBPP1Mm1HYrgX')
+        emailjs.send('default_service', 'template_go19blh', data, 'user_FqD3kBuBBPP1Mm1HYrgXD')
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
            handleSuccess()
