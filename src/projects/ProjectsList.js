@@ -28,6 +28,13 @@ export const ProjectsList = [
         liveUrl: 'https://declutterjs.netlify.app',
         hashTags:['javascript', 'html', 'css'],
     },
+    {
+        id: 5,
+        repoName: 'Insure-Landing-Page-Frontend-Mentror',
+        description: 'frontendmentor.io Landing Page Challenge using HTML/CSS and flexbox',
+        liveUrl: 'https://rahul-an-insure-landing-page.netlify.app/',
+        hashTags:['flexbox', 'html', 'css'],
+    },
     
     
 ]
