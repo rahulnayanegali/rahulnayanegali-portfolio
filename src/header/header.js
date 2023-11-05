@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    // BrowserRouter as Router,
-    // Switch,
-    // Route,
-	Link  } from 'react-router-dom';
-// import About from '../about/about';
+import { Link  } from 'react-router-dom';
 
 export default function header() {
     return (
@@ -22,30 +17,19 @@ export default function header() {
             </div>
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div className="text-sm flex justify-center lg:justify-start lg:flex-grow">
-						 {/* <Link to="./about"> */}
-                         
 							 <a className="block mt-4 lg:inline-block lg:mt-0 text-gray-700 border-red-500  mr-4" href="#about">
                                  <span className="text-2xl">
                                  About
                                  </span>
-                         
 							</a>
-						  {/* </Link> */}
-						  {/* <Link to="projects"> */}
 							<a className="block mt-4 lg:inline-block lg:mt-0 text-gray-700  mr-4" href="#projects">
 									<span className="text-2xl">
                                     Projects </span>
 							</a>
-							{/* </Link> */}
-							{/* <Link to="./contact"> */}
                     <a className="block mt-4 lg:inline-block lg:mt-0 text-gray-700 mr-4" href='#contact'>
                         <span className="text-2xl">Contact</span>
                     </a>
-						  {/* </Link> */}
                 </div>
-                {/* <div>
-                <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
-                </div> */}
             </div>
 </nav>
     )

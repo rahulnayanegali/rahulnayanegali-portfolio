@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css';
 import Header from './header/header';
-import About from './about/about';
+import About from './about/About';
 import Projects from './projects/projects';
-import Contact from './contact/contact';
+import Contact from './contact/Contact';
 import ContactUs from './contact/ContactUs'
 import { BrowserRouter as Router,
     //   Route, Switch
