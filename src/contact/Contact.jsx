@@ -9,8 +9,8 @@ export default function contact() {
         sm:border-gray-500 sm:py-2 sm:mt-0 mt-4 flex flex-col items-center
         md:items-start"
       >
-        <a href="/" className="text-gray-700 ml-1 hover:no-underline">
-          Rahul Nayanegali
+        <a href="/" className="text-gray-300 ml-1 hover:no-underline">
+          Rahul Anand Nayanegali
         </a>
         <a href="/" className="text-gray-700 ml-1 hover:no-underline">
           Made using React and Tailwind CSS
