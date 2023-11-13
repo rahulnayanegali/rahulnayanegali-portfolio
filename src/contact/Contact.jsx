@@ -10,10 +10,10 @@ export default function contact() {
         md:items-start"
       >
         <a href="/" className="text-gray-300 ml-1 hover:no-underline">
-          Rahul Anand Nayanegali
+          Rahul Nayanegali
         </a>
         <a href="/" className="text-gray-700 ml-1 hover:no-underline">
-          Made using React and Tailwind CSS
+          Made  using React and Tailwind CSS
         </a>
       </p>
       <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center
