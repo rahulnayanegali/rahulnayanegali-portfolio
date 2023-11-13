@@ -13,7 +13,7 @@ export default function contact() {
           Rahul Nayanegali
         </a>
         <a href="/" className="text-gray-700 ml-1 hover:no-underline">
-          Made  using React and Tailwind CSS
+          Made  using React and Tailwind
         </a>
       </p>
       <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center
