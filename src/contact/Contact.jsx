@@ -22,7 +22,7 @@ export default function contact() {
         <a
           className="text-gray-700 mx-2 text-xl transform hover:scale-150
            transition ease-in-out duration-300"
-          href="https://www.linkedin.com/in/rahul-anand-nayanegali-a026a1b9/"
+          href="https://www.linkedin.com/in/rahulnayanegali"
           target="_blank"
           rel="noopener noreferrer"
         >
