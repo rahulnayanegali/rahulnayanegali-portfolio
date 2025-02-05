@@ -3,6 +3,22 @@ import React, { Fragment } from 'react';
 export default function Project(props) {
     let project = props.project
     let repoUrl = `https://www.github.com/rahulnayanegali/${project.repoName}`
+    /**
+     * {
+        "id": 1,
+        "created_at": "2025-02-05T03:48:07.734915+00:00",
+        "repoName": "MedX-ai",
+        "description": "A UI dashboard enables users to upload chest X-ray images and classify\ncommon thorax diseases using a deep-learning model, reducing the need for\nradiologist examination.",
+        "liveUrl": "https://med-x-5f2b4.web.app",
+        "hashTags": {
+            "technologies": [
+                "react",
+                "flask",
+                "pytorch",
+                "docker"
+            ]
+        }
+    } */  
 
     return (
         <Fragment>
@@ -25,7 +41,7 @@ export default function Project(props) {
                                 {/* </p> */}
                             </div>
                             <div className="px-6 pt-4 pb-2">
-                                {project.hashTags.map(hashTag => {
+                                {project.hashTags.technologies.map(hashTag => {
                                     return(
                                     <span key={hashTag}className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{hashTag}</span>
                                     )
