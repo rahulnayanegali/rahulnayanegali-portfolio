@@ -1,68 +1,62 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=rahulnayanegali&label=Profile%20views&color=0e75b6&style=flat" alt="rahulnayanegali" /> </p>
 
-## Available Scripts
+# Hello, I'm Rahul Nayanegali 👋
 
-In the project directory, you can run:
+[![Portfolio](https://img.shields.io/badge/-Portfolio-000000?style=flat-square&logo=About.me&logoColor=white)](https://rahulnayanegali.netlify.app)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/rahulnayanegali/)
+[![Email](https://img.shields.io/badge/-Email-D14836?style=flat-square&logo=Gmail&logoColor=white)](mailto:nayanegali.rahul@gmail.com)
 
-### `npm start`
+## 💻
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=000000&background=FFFFFF00&random=false&width=435&lines=Senior+Software+Engineer;AI+Enthusiast;Full+Stack+Developer" alt="Typing SVG" /></a>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+With 5+ years of experience in full-stack development, I specialize in frontend technologies and AI integration. I'm passionate about crafting efficient, scalable solutions and leveraging cutting-edge technologies.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 🏆 Highlights
 
-### `npm test`
+- Computer Science Departmental Award recipient at Pace University
+- AWS Certified Cloud Practitioner
+- Experienced in AI and Machine Learning projects
+- Teaching Assistant for Data Structures and Algorithms
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![AWS](https://img.shields.io/badge/-AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white)
+![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)
+![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Featured Projects
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### AI-Based Common Thorax Disease Detector
+A deep learning CNN model using PyTorch for X-ray image classification, achieving 93% accuracy.
+- **Tech Stack:** PyTorch, React, Flask
+- [GitHub Repo](https://github.com/rahulnayanegali/MedX.ai)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Sorting Algorithms Simulation
+A web application visualizing sorting algorithms using React.js and Spring Boot API.
+- **Tech Stack:** React.js, Spring Boot, Server-Sent Events
+- [Backend Spring Boot GitHub Repo](https://github.com/rahulnayanegali/backend-algos-simulation)
+- [Frontend React GitHub Repo](https://github.com/rahulnayanegali/algos-frontend)
 
-### `npm run eject`
+## 📊 GitHub Stats
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Rahul's GitHub stats](https://github-readme-stats.vercel.app/api?username=rahulnayanegali&show_icons=true&theme=radical)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=rahulnayanegali&layout=compact&theme=radical)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🌱 Currently Learning
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Advanced AI and Machine Learning techniques
+- Microservices architecture
+- Cloud-native development
 
-## Learn More
+## 📫 Let's Connect!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/rahulnayanegali/)
+[![Email](https://img.shields.io/badge/-Email-D14836?style=flat-square&logo=Gmail&logoColor=white)](mailto:nayanegali.rahul@gmail.com)
