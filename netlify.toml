@@ -1,6 +1,17 @@
 [build]
   command = "CI=false npm run build"
   publish = "dist"  # Change this to match Vite's output directory
+  functions = "netlify/functions"  # Add this line
 
 [build.environment]
   NODE_VERSION = "18"
+
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
