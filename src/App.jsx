@@ -3,8 +3,6 @@ import './App.css';
 import Header from './header/header';
 import About from './about/About';
 import Projects from './projects/projects';
-import Contact from './contact/Contact';
-import ContactUs from './contact/ContactUs'
 import {
     BrowserRouter as Router,
 } from 'react-router-dom'
@@ -14,8 +12,7 @@ import SocialFeed from './components/SocialFeed';
 import Footer from './footer/Footer';
 
 export default function App() {
-    // You can implement dark mode logic here if needed
-    const theme = lightTheme; // or darkTheme based on user preference
+    const theme = lightTheme;
 
     return (
         <ThemeProvider theme={theme}>
@@ -23,12 +20,13 @@ export default function App() {
                 <div className="bg-gray-100">
                     <div className="max-w-7xl mx-auto p-8 grid grid-cols-1 gap-8">
                         <Header />
+                        <HeaderSpacer />
                         <About />
-                        <Projects />
-                        {/* <div className="min-h-[600px] w-full block">
+                        <div className="w-full block h-screen relative">
                             <SocialFeed />
-                        </div> */}
-                        <ContactUs />
+                        </div>
+                        <Projects />
+                        {/* <ContactUs /> */}
                         <Footer />
                     </div>
                 </div>
@@ -36,3 +34,9 @@ export default function App() {
         </ThemeProvider>
     )
 }
+
+
+const HeaderSpacer = () => {
+    return <div className="h-16 md:h-20" />;
+  };
+

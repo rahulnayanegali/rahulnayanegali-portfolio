@@ -7,10 +7,18 @@ import { motion } from 'framer-motion';
 const SocialSection = styled.section`
   @apply bg-white rounded-lg shadow-sm mx-auto my-8 max-w-7xl;
   border: 1px solid #f0f0f0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 `;
 
 const SectionHeader = styled.div`
-  @apply p-6 pb-3 border-b border-gray-100;
+  @apply bg-white border-b border-gray-100;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(5px);
 `;
 
 const SectionTitle = styled.h2`
@@ -21,9 +29,10 @@ const SectionTitle = styled.h2`
 const TweetGrid = styled.div`
   @apply p-6;
   display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 0;
   grid-gap: 1rem;
+  overflow-y: auto;
+  flex: 1;
 
   .tweet-container {
     break-inside: avoid;
@@ -223,7 +232,7 @@ const SocialFeed = () => {
       <SectionHeader>
         <h1 className="font-bold text-3xl tracking-tight mb-4 px-6 py-4">Recent Thoughts</h1>
         {lastUpdated && !isRateLimited && (
-          <div className="text-sm text-gray-400">
+          <div className="text-sm text-gray-400 px-6 pb-4">
             Last updated: {lastUpdated.toLocaleTimeString()}
           </div>
         )}
