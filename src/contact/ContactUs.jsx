@@ -9,7 +9,7 @@ export default function ContactUs() {
   const {
     register,
     handleSubmit,
-    errors,
+    formState: { errors },
     reset,
   } = useForm();
 
@@ -63,8 +63,7 @@ export default function ContactUs() {
           >
             Full Name
             <input
-              name="name"
-              ref={register({ required: 'Name Required' })}
+              {...register("name", { required: 'Name Required' })}
               className="appearance-none block w-full bg-gray-200 text-gray-700
               border border-gray-200 rounded py-3 px-4 mb-3 leading-tight
               focus:outline-none focus:bg-white"
@@ -87,8 +86,7 @@ export default function ContactUs() {
           >
             E-mail
             <input
-              name="email"
-              ref={register({ required: 'Email Required' })}
+              {...register("email", { required: 'Email Required' })}
               className="appearance-none block w-full bg-gray-200 text-gray-700
               border border-gray-200 rounded py-3 px-4 mb-3
               leading-tight focus:outline-none focus:bg-white
@@ -114,8 +112,7 @@ export default function ContactUs() {
           >
             Message
             <textarea
-              name="message"
-              ref={register({ required: 'Message Required' })}
+              {...register("message", { required: 'Message Required' })}
               className=" no-resize appearance-none block w-full bg-gray-200
               text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3
               leading-tight focus:outline-none focus:bg-white

@@ -20,6 +20,6 @@ export default function Projects() {
                     }
                 </div>
             </div>
-        </Fragment>
+                    </Fragment>
     )
 }
