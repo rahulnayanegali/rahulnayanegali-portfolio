@@ -86,7 +86,7 @@ export const handler = async (event) => {
     }
 
     return sendResponse(500, {
-      error: 'Failed to fetch tweets',
+      error: `Failed to fetch tweets ${error.message}`,
       message: error.message
     });
   }
