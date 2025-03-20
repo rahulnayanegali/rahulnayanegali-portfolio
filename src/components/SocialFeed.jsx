@@ -137,7 +137,7 @@ const SocialFeed = () => {
       setError(null);
       setIsRateLimited(false);
       
-      const response = await axios.get(`/api/twitter/${TWITTER_USERNAME}`);
+      const response = await axios.get(`/.netlify/functions/twitter/${TWITTER_USERNAME}`);
       
       if (response.data && Array.isArray(response.data)) {
         setTweets(response.data);
