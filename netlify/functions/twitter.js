@@ -87,7 +87,8 @@ export const handler = async (event) => {
 
     return sendResponse(500, {
       error: `Failed to fetch tweets ${error.message}`,
-      message: error
+      message: error,
+      token: process.env.TWITTER_BEARER_TOKEN
     });
   }
 };
