@@ -1,14 +1,7 @@
-import 'dotenv/config';
-import express from 'express';
 import { Client } from 'twitter-api-sdk';
-import serverless from 'serverless-http';
-import NodeCache from 'node-cache';
 
-const app = express();
-const cache = new NodeCache({ 
-  stdTTL: 3600, // 1 hour cache
-  checkperiod: 120 // Check for expired keys every 2 minutes
-});
+// Twitter API setup
+const twitterClient = new Client(process.env.TWITTER_BEARER_TOKEN);
 
 // Dummy tweets for fallback
 const DUMMY_TWEETS = [
@@ -20,22 +13,37 @@ const DUMMY_TWEETS = [
   // Other dummy tweets...
 ];
 
-// Twitter API setup
-const twitterClient = new Client(process.env.TWITTER_BEARER_TOKEN);
+export const handler = async (event, context) => {
+  // Enable CORS
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+  };
 
-app.get('/twitter/:username', async (req, res) => {
+  // Handle OPTIONS request for CORS
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: ''
+    };
+  }
+
   try {
-    const username = req.params.username;
-    const cacheKey = `twitter_${username}`;
-
-    // Check cache first
-    const cachedData = cache.get(cacheKey);
-    if (cachedData) {
-      console.log('Returning cached data');
-      return res.json(cachedData);
+    console.log('Token available:', !!process.env.TWITTER_BEARER_TOKEN);
+    
+    // Extract username from path
+    const username = event.path.split('/').pop();
+    
+    if (!username) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Username is required' })
+      };
     }
 
-    console.log('Fetching data from Twitter API');
     try {
       const userResponse = await twitterClient.users.findUserByUsername(username);
       if (!userResponse.data) {
@@ -54,25 +62,30 @@ app.get('/twitter/:username', async (req, res) => {
           .filter(tweet => !tweet.referenced_tweets)
           .slice(0, 5);
 
-        cache.set(cacheKey, originalTweets);
-        return res.json(originalTweets);
-      } else {
-        throw new Error('No tweets found');
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify(originalTweets)
+        };
       }
     } catch (twitterError) {
       console.error('Twitter API Error:', twitterError);
-      const limitedDummyTweets = DUMMY_TWEETS.slice(0, 5);
-      cache.set(cacheKey, limitedDummyTweets);
-      return res.json(limitedDummyTweets);
+      // Return dummy tweets as fallback
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(DUMMY_TWEETS.slice(0, 5))
+      };
     }
   } catch (error) {
     console.error('Server Error:', error);
-    return res.status(500).json({ 
-      error: 'Server error', 
-      message: error.message 
-    });
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ 
+        error: 'Server error', 
+        message: error.message 
+      })
+    };
   }
-});
-
-// This is the key part for Netlify Functions
-export const handler = serverless(app);
+};

@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "netlify dev",
     "client": "vite",
     "server": "node api/server.js",
     "build": "vite build && npm run build:functions",

@@ -137,7 +137,7 @@ const SocialFeed = () => {
       setError(null);
       setIsRateLimited(false);
       
-      const response = await axios.get(`/.netlify/functions/twitter/${TWITTER_USERNAME}`);
+      const response = await axios.get(`/api/twitter/${TWITTER_USERNAME}`);
       
       if (response.data && Array.isArray(response.data)) {
         setTweets(response.data);
@@ -147,25 +147,7 @@ const SocialFeed = () => {
       }
     } catch (err) {
       console.error('Error fetching tweets:', err);
-      
-      // Check if it's a rate limit error
-      if (err.response && err.response.status === 429) {
-        setIsRateLimited(true);
-        
-        // Get reset time from headers if available
-        const resetTime = err.response.headers['x-rate-limit-reset'];
-        if (resetTime) {
-          const resetDate = new Date(parseInt(resetTime) * 1000);
-          setRateLimitReset(resetDate);
-        }
-        
-        // If we have cached tweets, still show them
-        if (tweets.length === 0) {
-          setError('Twitter API rate limit exceeded. Showing placeholder content.');
-        }
-      } else {
-        setError('Unable to load tweets');
-      }
+      setError('Unable to load tweets');
     } finally {
       setLoading(false);
     }

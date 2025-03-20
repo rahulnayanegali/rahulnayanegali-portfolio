@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import Project from './project';
 import {ProjectsList} from './ProjectsList';
-import SocialFeed from '../components/SocialFeed';
 
 export default function Projects() {
     return (
