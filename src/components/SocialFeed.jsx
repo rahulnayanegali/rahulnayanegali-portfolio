@@ -117,7 +117,7 @@ const SocialFeed = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [rateLimitReset, setRateLimitReset] = useState(null);
   const gridRef = useRef(null);
-  
+
   const TWITTER_USERNAME = 'rahulnayanegali';
 
   useEffect(() => {
@@ -135,10 +135,18 @@ const SocialFeed = () => {
     try {
       setLoading(true);
       setError(null);
-      setIsRateLimited(false);
-      
+
       const response = await axios.get(`/api/twitter/${TWITTER_USERNAME}`);
-      
+
+      // Check for rate limit headers
+      if (response.headers['x-ratelimit-limited'] === 'true') {
+        setIsRateLimited(true);
+        const resetTime = response.headers['x-ratelimit-reset'];
+        setRateLimitReset(resetTime ? new Date(parseInt(resetTime)) : null);
+      } else {
+        setIsRateLimited(false);
+      }
+
       if (response.data && Array.isArray(response.data)) {
         setTweets(response.data);
         setLastUpdated(new Date());
@@ -153,20 +161,17 @@ const SocialFeed = () => {
     }
   };
 
-  const handleRetry = () => {
-    fetchTweets();
-  };
 
   const formatResetTime = (resetTime) => {
     if (!resetTime) return 'soon';
-    
+
     const now = new Date();
     const diffMinutes = Math.round((resetTime - now) / (60 * 1000));
-    
+
     if (diffMinutes <= 0) return 'very soon';
     if (diffMinutes === 1) return 'in 1 minute';
     if (diffMinutes < 60) return `in ${diffMinutes} minutes`;
-    
+
     const diffHours = Math.floor(diffMinutes / 60);
     return `in ${diffHours} hour${diffHours > 1 ? 's' : ''}`;
   };
@@ -209,6 +214,92 @@ const SocialFeed = () => {
     }
   }, [loading, tweets, resizeAllGridItems]);
 
+  // Add this useEffect after your existing useEffects
+  useEffect(() => {
+    if (isRateLimited && rateLimitReset) {
+      const now = new Date();
+      const resetTime = new Date(rateLimitReset);
+      const timeUntilReset = resetTime - now;
+
+      if (timeUntilReset > 0) {
+        // Set a timer to retry after rate limit expires
+        const timerId = setTimeout(() => {
+          fetchTweets();
+        }, timeUntilReset + 1000); // Add 1 second buffer
+
+        return () => clearTimeout(timerId);
+      }
+    }
+  }, [isRateLimited, rateLimitReset]);
+
+  // Add this state
+  const [countdown, setCountdown] = useState(null);
+
+  // Add this useEffect
+  useEffect(() => {
+    if (isRateLimited && rateLimitReset) {
+      const intervalId = setInterval(() => {
+        const now = new Date();
+        const resetTime = new Date(rateLimitReset);
+        const timeLeft = Math.max(0, Math.floor((resetTime - now) / 1000));
+
+        if (timeLeft <= 0) {
+          clearInterval(intervalId);
+          setCountdown(null);
+        } else {
+          setCountdown(timeLeft);
+        }
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    } else {
+      setCountdown(null);
+    }
+  }, [isRateLimited, rateLimitReset]);
+
+  // Update your ErrorBanner to show countdown
+  {
+    isRateLimited && (
+      <ErrorBanner className="mx-6 mt-4">
+        <p>
+          Twitter API rate limit exceeded.
+          {countdown ? (
+            <span> Limits will reset in {Math.floor(countdown / 60)}:{(countdown % 60).toString().padStart(2, '0')}.</span>
+          ) : (
+            <span> Limits will reset {formatResetTime(rateLimitReset)}.</span>
+          )}
+          {tweets.length > 0 ? ' Showing cached tweets.' : ' Showing placeholders.'}
+          <RetryButton onClick={handleRetry}>Retry</RetryButton>
+        </p>
+      </ErrorBanner>
+    )
+  }
+
+  // Add these states
+  const [retryAttempts, setRetryAttempts] = useState(0);
+  const [retryDisabled, setRetryDisabled] = useState(false);
+
+  // Update the handleRetry function
+  const handleRetry = () => {
+    if (retryDisabled) return;
+
+    if (isRateLimited && retryAttempts > 2) {
+      // After 3 attempts, disable retry button for a while
+      setRetryDisabled(true);
+      setTimeout(() => {
+        setRetryDisabled(false);
+        setRetryAttempts(0);
+      }, 60000); // 1 minute timeout
+      return;
+    }
+
+    setRetryAttempts(prev => prev + 1);
+    fetchTweets();
+  };
+
+
+
+
   return (
     <SocialSection>
       <SectionHeader>
@@ -219,17 +310,24 @@ const SocialFeed = () => {
           </div>
         )}
       </SectionHeader>
-      
+
       {isRateLimited && (
         <ErrorBanner className="mx-6 mt-4">
           <p>
             Twitter API rate limit exceeded. Limits will reset {formatResetTime(rateLimitReset)}.
             {tweets.length > 0 ? ' Showing cached tweets.' : ' Showing placeholders.'}
-            <RetryButton onClick={handleRetry}>Retry</RetryButton>
+            // Update the retry button
+            <RetryButton
+              onClick={handleRetry}
+              disabled={retryDisabled}
+              className={retryDisabled ? "opacity-50 cursor-not-allowed" : ""}
+            >
+              {retryDisabled ? "Too many attempts" : "Retry"}
+            </RetryButton>
           </p>
         </ErrorBanner>
       )}
-      
+
       <TweetGrid ref={gridRef}>
         {loading ? (
           renderSkeletons()
@@ -241,8 +339,8 @@ const SocialFeed = () => {
           <div className="masonry-grid">
             {tweets.map(tweet => (
               <TweetContainer key={tweet.id} className="tweet-container">
-                <blockquote 
-                  className="twitter-tweet" 
+                <blockquote
+                  className="twitter-tweet"
                   data-theme="light"
                   data-cards="hidden"
                   data-media="hidden"
@@ -250,7 +348,7 @@ const SocialFeed = () => {
                   data-width="100%"
                   data-dnt="true"
                 >
-                  <a 
+                  <a
                     href={`https://twitter.com/${TWITTER_USERNAME}/status/${tweet.id}`}
                   ></a>
                 </blockquote>

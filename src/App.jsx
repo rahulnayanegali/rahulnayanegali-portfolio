@@ -7,7 +7,7 @@ import {
     BrowserRouter as Router,
 } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from './theme/theme';
+import { lightTheme } from './theme/theme';
 import SocialFeed from './components/SocialFeed';
 import Footer from './footer/Footer';
 
