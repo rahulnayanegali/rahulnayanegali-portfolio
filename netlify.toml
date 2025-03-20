@@ -1,0 +1,6 @@
+[build]
+  command = "CI=false npm run build"
+  publish = "dist"  # Change this to match Vite's output directory
+
+[build.environment]
+  NODE_VERSION = "18"
