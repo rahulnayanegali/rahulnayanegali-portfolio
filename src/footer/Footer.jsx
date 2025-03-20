@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import { IoRocketOutline } from 'react-icons/io5';
 import { SiReact, SiVite, SiTailwindcss } from 'react-icons/si';
+import { FaMedium } from 'react-icons/fa';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -81,7 +82,7 @@ export default function Footer() {
                             Connect
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
                         </h3>
-                        <div className="flex justify-center space-x-8">
+                        <div className="flex justify-center space-x-6">
                             <a 
                                 href="https://github.com/rahulnayanegali" 
                                 className="group relative hover:text-white transition-all duration-300"
@@ -111,6 +112,16 @@ export default function Footer() {
                             >
                                 <span className="absolute -inset-2 rounded-full bg-white bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></span>
                                 <FaIcons.FaTwitter size={24} className="relative transform group-hover:scale-110 transition-transform duration-300" />
+                            </a>
+                            <a 
+                                href="https://medium.com/@rahulnayanegali" 
+                                className="group relative hover:text-white transition-all duration-300"
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="Medium"
+                            >
+                                <span className="absolute -inset-2 rounded-full bg-white bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></span>
+                                <FaMedium size={24} className="relative transform group-hover:scale-110 transition-transform duration-300" />
                             </a>
                             <a 
                                 href="mailto:contact@rahulnayanegali.com" 
