@@ -3,8 +3,8 @@ import NodeCache from 'node-cache';
 
 // Cache setup with longer TTL
 const cache = new NodeCache({ 
-  stdTTL: 3600 * 2, // 2 hours cache
-  checkperiod: 120 
+  stdTTL: 3600 * 4, // 4 hours cache
+  checkperiod: 600  // Check every 10 minutes
 });
 
 // Store rate limit info globally
@@ -44,6 +44,11 @@ const updateRateLimitInfo = (headers) => {
   }
 };
 
+// Add progressive retry delays
+const getRetryDelay = (attempts) => {
+  return Math.min(1000 * Math.pow(2, attempts), 3600000); // Max 1 hour
+};
+
 const twitterClient = new Client(process.env.TWITTER_BEARER_TOKEN);
 
 export const handler = async (event, context) => {
@@ -61,15 +66,37 @@ export const handler = async (event, context) => {
   try {
     const username = event.path.split('/').pop();
     const cacheKey = `twitter_${username}`;
+    const retryKey = `retry_${username}`;
 
-    // Check cache first
-    const cachedData = cache.get(cacheKey);
-    if (cachedData) {
-      console.log('Returning cached data');
+    // Check retry attempts
+    const retryCount = cache.get(retryKey) || 0;
+    if (retryCount > 10) { // Max 10 retries
+      const delay = getRetryDelay(retryCount);
       return {
         statusCode: 200,
-        headers,
-        body: JSON.stringify(cachedData)
+        headers: {
+          ...headers,
+          'X-Retry-After': new Date(Date.now() + delay).toISOString()
+        },
+        body: JSON.stringify(DUMMY_TWEETS)
+      };
+    }
+
+    // Enhanced cache check
+    const cachedData = cache.get(cacheKey);
+    if (cachedData) {
+      return {
+        statusCode: 200,
+        headers: {
+          ...headers,
+          'X-Cache': 'HIT',
+          'X-Cache-Age': Math.floor((Date.now() - cachedData.timestamp) / 1000),
+          'X-RateLimit-Limit': rateLimitInfo.limit || '',
+          'X-RateLimit-Remaining': rateLimitInfo.remaining || '',
+          'X-RateLimit-Reset': rateLimitInfo.reset || '',
+          'X-Cache-Status': 'HIT'
+        },
+        body: JSON.stringify(cachedData.data)
       };
     }
 
@@ -98,13 +125,18 @@ export const handler = async (event, context) => {
       if (tweetsResponse.data && tweetsResponse.data.length > 0) {
         updateRateLimitInfo(tweetsResponse.headers || {});
         const tweets = tweetsResponse.data.slice(0, 5);
-        cache.set(cacheKey, tweets);
+        cache.set(cacheKey, {
+          data: tweets,
+          timestamp: Date.now()
+        });
         return {
           statusCode: 200,
           headers: {
             ...headers,
+            'X-RateLimit-Limit': rateLimitInfo.limit || '',
             'X-RateLimit-Remaining': rateLimitInfo.remaining || '',
-            'X-RateLimit-Reset': rateLimitInfo.reset || ''
+            'X-RateLimit-Reset': rateLimitInfo.reset || '',
+            'X-Cache-Status': 'HIT'
           },
           body: JSON.stringify(tweets)
         };
@@ -147,7 +179,13 @@ if (twitterError.status === 429) {
         body: JSON.stringify(DUMMY_TWEETS)
       };
     }
+
+
   } catch (error) {
+    // Increment retry count
+    const retryCount = (cache.get(retryKey) || 0) + 1;
+    cache.set(retryKey, retryCount);
+    
     console.error('Server Error:', error);
     return {
       statusCode: 200,

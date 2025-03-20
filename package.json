@@ -43,6 +43,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "autoprefixer": "^9.8.6",
     "netlify-cli": "^19.0.2",
     "postcss": "^8.4.31",

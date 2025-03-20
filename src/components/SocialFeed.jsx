@@ -91,6 +91,7 @@ const SkeletonTweet = () => (
     initial={{ opacity: 0.6 }}
     animate={{ opacity: 1 }}
     transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+    data-testid="skeleton-tweet"
   >
     <SkeletonHeader>
       <SkeletonAvatar />
@@ -120,6 +121,12 @@ const SocialFeed = () => {
 
   const TWITTER_USERNAME = 'rahulnayanegali';
 
+  // Add local storage caching
+  const [localCache, setLocalCache] = useState(() => {
+    const cached = localStorage.getItem('twitter_cache');
+    return cached ? JSON.parse(cached) : null;
+  });
+
   useEffect(() => {
     fetchTweets();
   }, []);
@@ -136,31 +143,42 @@ const SocialFeed = () => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get(`/api/twitter/${TWITTER_USERNAME}`);
-
-      // Check for rate limit headers
-      if (response.headers['x-ratelimit-limited'] === 'true') {
-        setIsRateLimited(true);
-        const resetTime = response.headers['x-ratelimit-reset'];
-        setRateLimitReset(resetTime ? new Date(parseInt(resetTime)) : null);
-      } else {
-        setIsRateLimited(false);
+      // Check local cache first
+      if (localCache) {
+        const cacheAge = new Date() - new Date(localCache.timestamp);
+        if (cacheAge < 30 * 60 * 1000) { // 30 minutes
+          setTweets(localCache.tweets);
+          setLastUpdated(new Date(localCache.timestamp));
+          setLoading(false);
+          return;
+        }
       }
 
+      const response = await axios.get(`/api/twitter/${TWITTER_USERNAME}`);
+      
       if (response.data && Array.isArray(response.data)) {
+        // Update local cache
+        const cacheData = {
+          tweets: response.data,
+          timestamp: new Date().toISOString()
+        };
+        localStorage.setItem('twitter_cache', JSON.stringify(cacheData));
+        setLocalCache(cacheData);
         setTweets(response.data);
         setLastUpdated(new Date());
-      } else {
-        setError('No tweets available');
       }
     } catch (err) {
       console.error('Error fetching tweets:', err);
-      setError('Unable to load tweets');
+      // Use cached data if available when error occurs
+      if (localCache) {
+        setTweets(localCache.tweets);
+        setLastUpdated(new Date(localCache.timestamp));
+      }
+      setError('Unable to load fresh tweets. Showing cached content.');
     } finally {
       setLoading(false);
     }
   };
-
 
   const formatResetTime = (resetTime) => {
     if (!resetTime) return 'soon';
@@ -201,18 +219,11 @@ const SocialFeed = () => {
 
   useEffect(() => {
     if (!loading && tweets.length > 0) {
-      const timer = setInterval(() => {
-        resizeAllGridItems();
-      }, 1000); // Check every second for any height changes
-
-      window.addEventListener('resize', resizeAllGridItems);
-
-      return () => {
-        clearInterval(timer);
-        window.removeEventListener('resize', resizeAllGridItems);
-      };
+      resizeAllGridItems(); // Initial resize
+      const timer = setInterval(resizeAllGridItems, 5000); // Check every 5 seconds instead
+      return () => clearInterval(timer);
     }
-  }, [loading, tweets, resizeAllGridItems]);
+  }, [loading, tweets]);
 
   // Add this useEffect after your existing useEffects
   useEffect(() => {
@@ -279,26 +290,24 @@ const SocialFeed = () => {
   const [retryAttempts, setRetryAttempts] = useState(0);
   const [retryDisabled, setRetryDisabled] = useState(false);
 
-  // Update the handleRetry function
-  const handleRetry = () => {
+  // Improve retry logic
+  const handleRetry = useCallback(() => {
     if (retryDisabled) return;
 
-    if (isRateLimited && retryAttempts > 2) {
-      // After 3 attempts, disable retry button for a while
-      setRetryDisabled(true);
-      setTimeout(() => {
-        setRetryDisabled(false);
-        setRetryAttempts(0);
-      }, 60000); // 1 minute timeout
-      return;
+    if (isRateLimited) {
+      if (retryAttempts > 2) {
+        setRetryDisabled(true);
+        setTimeout(() => {
+          setRetryDisabled(false);
+          setRetryAttempts(0);
+        }, 300000); // 5 minutes timeout instead of 1
+        return;
+      }
+      setRetryAttempts(prev => prev + 1);
     }
 
-    setRetryAttempts(prev => prev + 1);
     fetchTweets();
-  };
-
-
-
+  }, [retryDisabled, isRateLimited, retryAttempts]);
 
   return (
     <SocialSection>
@@ -338,7 +347,7 @@ const SocialFeed = () => {
         ) : tweets.length > 0 ? (
           <div className="masonry-grid">
             {tweets.map(tweet => (
-              <TweetContainer key={tweet.id} className="tweet-container">
+              <TweetContainer key={tweet.id} className="tweet-container" data-testid="tweet-container">
                 <blockquote
                   className="twitter-tweet"
                   data-theme="light"
