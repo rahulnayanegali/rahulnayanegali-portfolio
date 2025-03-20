@@ -78,14 +78,6 @@ const TweetContainer = styled.div`
   }
 `;
 
-const ErrorBanner = styled.div`
-  @apply bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4 text-sm text-yellow-800;
-`;
-
-const RetryButton = styled.button`
-  @apply ml-2 px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors;
-`;
-
 const SkeletonTweet = () => (
   <TweetSkeleton
     initial={{ opacity: 0.6 }}
@@ -111,264 +103,170 @@ const SkeletonTweet = () => (
 );
 
 const SocialFeed = () => {
-  const [tweets, setTweets] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
-  const [isRateLimited, setIsRateLimited] = useState(false);
-  const [rateLimitReset, setRateLimitReset] = useState(null);
-  const gridRef = useRef(null);
-
   const TWITTER_USERNAME = 'rahulnayanegali';
+  const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
 
-  // Add local storage caching
-  const [localCache, setLocalCache] = useState(() => {
-    const cached = localStorage.getItem('twitter_cache');
-    return cached ? JSON.parse(cached) : null;
+  const [state, setState] = useState({
+    tweets: [],
+    loading: true,
+    error: null,
+    lastUpdated: null,
+    isRateLimited: false,
+    rateLimitReset: null,
+    retryAttempts: 0,
+    retryDisabled: false,
+    countdown: null
   });
 
-  useEffect(() => {
-    fetchTweets();
+  const gridRef = useRef(null);
+  const [localCache, setLocalCache] = useState(() => {
+    try {
+      const cached = localStorage.getItem('twitter_cache');
+      return cached ? JSON.parse(cached) : null;
+    } catch (error) {
+      console.error('Cache parsing error:', error);
+      return null;
+    }
+  });
+
+  const updateState = (updates) => {
+    setState(prev => ({ ...prev, ...updates }));
+  };
+
+  const handleCache = useCallback((tweets) => {
+    const cacheData = {
+      tweets,
+      timestamp: new Date().toISOString()
+    };
+    localStorage.setItem('twitter_cache', JSON.stringify(cacheData));
+    setLocalCache(cacheData);
   }, []);
 
-  // Load Twitter widgets after tweets are loaded
-  useEffect(() => {
-    if (tweets.length > 0 && window.twttr && window.twttr.widgets) {
-      window.twttr.widgets.load();
-    }
-  }, [tweets]);
-
-  const fetchTweets = async () => {
+  const fetchTweets = useCallback(async () => {
     try {
-      setLoading(true);
-      setError(null);
+      updateState({ loading: true, error: null });
 
-      // Check local cache first
+      // Check cache validity
       if (localCache) {
         const cacheAge = new Date() - new Date(localCache.timestamp);
-        if (cacheAge < 30 * 60 * 1000) { // 30 minutes
-          setTweets(localCache.tweets);
-          setLastUpdated(new Date(localCache.timestamp));
-          setLoading(false);
+        if (cacheAge < CACHE_DURATION) {
+          updateState({
+            tweets: localCache.tweets,
+            lastUpdated: new Date(localCache.timestamp),
+            loading: false
+          });
           return;
         }
       }
 
       const response = await axios.get(`/api/twitter/${TWITTER_USERNAME}`);
-      
+
       if (response.data && Array.isArray(response.data)) {
-        // Update local cache
-        const cacheData = {
+        handleCache(response.data);
+        updateState({
           tweets: response.data,
-          timestamp: new Date().toISOString()
-        };
-        localStorage.setItem('twitter_cache', JSON.stringify(cacheData));
-        setLocalCache(cacheData);
-        setTweets(response.data);
-        setLastUpdated(new Date());
+          lastUpdated: new Date()
+        });
       }
     } catch (err) {
       console.error('Error fetching tweets:', err);
-      // Use cached data if available when error occurs
       if (localCache) {
-        setTweets(localCache.tweets);
-        setLastUpdated(new Date(localCache.timestamp));
+        updateState({
+          tweets: localCache.tweets,
+          lastUpdated: new Date(localCache.timestamp)
+        });
       }
-      setError('Unable to load fresh tweets. Showing cached content.');
+      updateState({ error: 'Unable to load fresh tweets. Showing cached content.' });
     } finally {
-      setLoading(false);
+      updateState({ loading: false });
     }
-  };
+  }, [localCache, handleCache]);
 
-  const formatResetTime = (resetTime) => {
-    if (!resetTime) return 'soon';
+  // Grid management
+  const resizeGridItem = useCallback((item) => {
+    if (!gridRef.current || !item) return;
 
-    const now = new Date();
-    const diffMinutes = Math.round((resetTime - now) / (60 * 1000));
-
-    if (diffMinutes <= 0) return 'very soon';
-    if (diffMinutes === 1) return 'in 1 minute';
-    if (diffMinutes < 60) return `in ${diffMinutes} minutes`;
-
-    const diffHours = Math.floor(diffMinutes / 60);
-    return `in ${diffHours} hour${diffHours > 1 ? 's' : ''}`;
-  };
-
-  const renderSkeletons = () => {
-    return Array(5).fill(null).map((_, index) => (
-      <SkeletonTweet key={`skeleton-${index}`} />
-    ));
-  };
-
-  // Function to reshuffle tweets for optimal placement
-  const resizeAllGridItems = useCallback(() => {
-    const allItems = document.getElementsByClassName('tweet-container');
-    for (let i = 0; i < allItems.length; i++) {
-      resizeGridItem(allItems[i]);
-    }
-  }, []);
-
-  const resizeGridItem = (item) => {
     const grid = gridRef.current;
     const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    const contentHeight = item.querySelector('.twitter-tweet').getBoundingClientRect().height;
+    const tweetElement = item.querySelector('.twitter-tweet');
+
+    if (!tweetElement) return;
+
+    const contentHeight = tweetElement.getBoundingClientRect().height;
     const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
     item.style.gridRowEnd = `span ${rowSpan}`;
-  };
+  }, []);
+
+  const resizeAllGridItems = useCallback(() => {
+    const allItems = document.getElementsByClassName('tweet-container');
+    Array.from(allItems).forEach(resizeGridItem);
+  }, [resizeGridItem]);
+
+  // Effects
+  useEffect(() => {
+    fetchTweets();
+  }, [fetchTweets]);
 
   useEffect(() => {
-    if (!loading && tweets.length > 0) {
-      resizeAllGridItems(); // Initial resize
-      const timer = setInterval(resizeAllGridItems, 5000); // Check every 5 seconds instead
+    if (state.tweets.length > 0 && window.twttr?.widgets) {
+      window.twttr.widgets.load();
+    }
+  }, [state.tweets]);
+
+  useEffect(() => {
+    if (!state.loading && state.tweets.length > 0) {
+      resizeAllGridItems();
+      const timer = setInterval(resizeAllGridItems, 5000);
       return () => clearInterval(timer);
     }
-  }, [loading, tweets]);
+  }, [state.loading, state.tweets, resizeAllGridItems]);
 
-  // Add this useEffect after your existing useEffects
-  useEffect(() => {
-    if (isRateLimited && rateLimitReset) {
-      const now = new Date();
-      const resetTime = new Date(rateLimitReset);
-      const timeUntilReset = resetTime - now;
+  // Render methods
+  const renderSkeletons = () => (
+    Array(5).fill(null).map((_, index) => (
+      <SkeletonTweet key={`skeleton-${index}`} />
+    ))
+  );
 
-      if (timeUntilReset > 0) {
-        // Set a timer to retry after rate limit expires
-        const timerId = setTimeout(() => {
-          fetchTweets();
-        }, timeUntilReset + 1000); // Add 1 second buffer
-
-        return () => clearTimeout(timerId);
-      }
-    }
-  }, [isRateLimited, rateLimitReset]);
-
-  // Add this state
-  const [countdown, setCountdown] = useState(null);
-
-  // Add this useEffect
-  useEffect(() => {
-    if (isRateLimited && rateLimitReset) {
-      const intervalId = setInterval(() => {
-        const now = new Date();
-        const resetTime = new Date(rateLimitReset);
-        const timeLeft = Math.max(0, Math.floor((resetTime - now) / 1000));
-
-        if (timeLeft <= 0) {
-          clearInterval(intervalId);
-          setCountdown(null);
-        } else {
-          setCountdown(timeLeft);
-        }
-      }, 1000);
-
-      return () => clearInterval(intervalId);
-    } else {
-      setCountdown(null);
-    }
-  }, [isRateLimited, rateLimitReset]);
-
-  // Update your ErrorBanner to show countdown
-  {
-    isRateLimited && (
-      <ErrorBanner className="mx-6 mt-4">
-        <p>
-          Twitter API rate limit exceeded.
-          {countdown ? (
-            <span> Limits will reset in {Math.floor(countdown / 60)}:{(countdown % 60).toString().padStart(2, '0')}.</span>
-          ) : (
-            <span> Limits will reset {formatResetTime(rateLimitReset)}.</span>
-          )}
-          {tweets.length > 0 ? ' Showing cached tweets.' : ' Showing placeholders.'}
-          <RetryButton onClick={handleRetry}>Retry</RetryButton>
-        </p>
-      </ErrorBanner>
-    )
-  }
-
-  // Add these states
-  const [retryAttempts, setRetryAttempts] = useState(0);
-  const [retryDisabled, setRetryDisabled] = useState(false);
-
-  // Improve retry logic
-  const handleRetry = useCallback(() => {
-    if (retryDisabled) return;
-
-    if (isRateLimited) {
-      if (retryAttempts > 2) {
-        setRetryDisabled(true);
-        setTimeout(() => {
-          setRetryDisabled(false);
-          setRetryAttempts(0);
-        }, 300000); // 5 minutes timeout instead of 1
-        return;
-      }
-      setRetryAttempts(prev => prev + 1);
-    }
-
-    fetchTweets();
-  }, [retryDisabled, isRateLimited, retryAttempts]);
+  const renderTweets = () => (
+    <div className="masonry-grid">
+      {state.tweets.map(tweet => (
+        <TweetContainer key={tweet.id} className="tweet-container" data-testid="tweet-container">
+          <blockquote
+            className="twitter-tweet"
+            data-theme="light"
+            data-cards="hidden"
+            data-media="hidden"
+            data-conversation="none"
+            data-width="100%"
+            data-dnt="true"
+          >
+            <a href={`https://twitter.com/${TWITTER_USERNAME}/status/${tweet.id}`} />
+          </blockquote>
+        </TweetContainer>
+      ))}
+    </div>
+  );
 
   return (
     <SocialSection>
       <SectionHeader>
         <h1 className="font-bold text-3xl tracking-tight mb-4 px-6 py-4">Recent Thoughts</h1>
-        {lastUpdated && !isRateLimited && (
+        {state.lastUpdated && (
           <div className="text-sm text-gray-400 px-6 pb-4">
-            Last updated: {lastUpdated.toLocaleTimeString()}
+            Last updated: {state.lastUpdated.toLocaleTimeString()}
           </div>
         )}
       </SectionHeader>
 
-      {isRateLimited && (
-        <ErrorBanner className="mx-6 mt-4">
-          <p>
-            Twitter API rate limit exceeded. Limits will reset {formatResetTime(rateLimitReset)}.
-            {tweets.length > 0 ? ' Showing cached tweets.' : ' Showing placeholders.'}
-            // Update the retry button
-            <RetryButton
-              onClick={handleRetry}
-              disabled={retryDisabled}
-              className={retryDisabled ? "opacity-50 cursor-not-allowed" : ""}
-            >
-              {retryDisabled ? "Too many attempts" : "Retry"}
-            </RetryButton>
-          </p>
-        </ErrorBanner>
-      )}
-
       <TweetGrid ref={gridRef}>
-        {loading ? (
-          renderSkeletons()
-        ) : error ? (
-          <div className="col-span-full p-6 text-center text-gray-500">
-            {error}
-          </div>
-        ) : tweets.length > 0 ? (
-          <div className="masonry-grid">
-            {tweets.map(tweet => (
-              <TweetContainer key={tweet.id} className="tweet-container" data-testid="tweet-container">
-                <blockquote
-                  className="twitter-tweet"
-                  data-theme="light"
-                  data-cards="hidden"
-                  data-media="hidden"
-                  data-conversation="none"
-                  data-width="100%"
-                  data-dnt="true"
-                >
-                  <a
-                    href={`https://twitter.com/${TWITTER_USERNAME}/status/${tweet.id}`}
-                  ></a>
-                </blockquote>
-              </TweetContainer>
-            ))}
-          </div>
-        ) : (
-          <div className="col-span-full p-6 text-center text-gray-500">
-            No tweets found
-          </div>
-        )}
+        {(state.loading || state.error)? renderSkeletons() :
+           state.tweets.length > 0 ? renderTweets() : (
+            <div className="col-span-full p-6 text-center text-gray-500">
+              No tweets found
+            </div>
+          )}
       </TweetGrid>
     </SocialSection>
   );
