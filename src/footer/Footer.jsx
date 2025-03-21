@@ -198,7 +198,7 @@ export default function Footer() {
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}>
                     <p className="text-sm">
-                        © {currentYear} Rahul Nayanegali. All rights reserved.
+                        © 2020 - {currentYear} Rahul Nayanegali. All rights reserved.
                     </p>
                     <p className="text-xs text-gray-500 mt-2 inline-flex items-center justify-center">
                         <span>Made with </span>
