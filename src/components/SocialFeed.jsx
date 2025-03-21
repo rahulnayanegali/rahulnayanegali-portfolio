@@ -252,7 +252,7 @@ const SocialFeed = () => {
   return (
     <SocialSection>
       <SectionHeader>
-        <h1 className="font-bold text-3xl tracking-tight mb-4 px-6 py-4">Recent Thoughts</h1>
+        <h1 className="font-bold text-3xl tracking-tight mb-4 px-6 py-4">Recent Tweets</h1>
         {state.lastUpdated && (
           <div className="text-sm text-gray-400 px-6 pb-4">
             Last updated: {state.lastUpdated.toLocaleTimeString()}
