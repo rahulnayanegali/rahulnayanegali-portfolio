@@ -1,44 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Rahul Nayanegali | Senior React Developer</title>
+    <meta name="title" content="Rahul Nayanegali | Senior React Developer" />
+    <meta name="description" content="Frontend engineer specializing in React, TypeScript, and modern web architecture. Building exceptional user experiences with performance-optimized interfaces." />
+    <meta name="author" content="Rahul Nayanegali" />
+    <meta name="keywords" content="React, Frontend, Developer, JavaScript, TypeScript, Web Development, UI/UX" />
+    
+    <!-- Favicons and App Icons -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="ReactJS Developer"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/developer.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#5bbad5" />
+    
+    <!-- Web App Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Rahul Nayanegali</title>
+    
+    <!-- Theme Color & Browser UI -->
+    <meta name="theme-color" content="#1F2937" />
+    <meta name="color-scheme" content="light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rahulnayanegali.com/" />
+    <meta property="og:title" content="Rahul Nayanegali | Senior React Developer" />
+    <meta property="og:description" content="Frontend engineer specializing in React, TypeScript, and modern web architecture. Building exceptional user experiences with performance-optimized interfaces." />
+    <meta property="og:image" content="%PUBLIC_URL%/social-preview.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://rahulnayanegali.com/" />
+    <meta property="twitter:title" content="Rahul Nayanegali | Senior React Developer" />
+    <meta property="twitter:description" content="Frontend engineer specializing in React, TypeScript, and modern web architecture. Building exceptional user experiences with performance-optimized interfaces." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/social-preview.png" />
+    <meta name="twitter:creator" content="@rahulnayanegali" />
+    
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://platform.twitter.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://platform.twitter.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://* data:; connect-src 'self' https://*;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+    
+    <!-- Twitter widgets -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rahul Nayanegali",
+        "url": "https://rahulnayanegali.com",
+        "sameAs": [
+          "https://twitter.com/rahulnayanegali",
+          "https://linkedin.com/in/rahulnayanegali",
+          "https://github.com/rahulnayanegali",
+          "https://medium.com/@rahulnayanegali"
+        ],
+        "jobTitle": "Senior React Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Frontend Engineering"
+        },
+        "description": "Frontend engineer specializing in React, TypeScript, and modern web architecture. Building exceptional user experiences with performance-optimized interfaces."
+      }
+    </script>
+    
+    <!-- Inline critical CSS for faster rendering -->
+    <style>
+      :root {
+        --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+      body {
+        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <noscript>You need to enable JavaScript to view this portfolio.</noscript>
+    <div id="root">
+    </div>
   </body>
 </html>
