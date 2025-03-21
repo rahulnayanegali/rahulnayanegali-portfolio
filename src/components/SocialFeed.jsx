@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const SocialSection = styled.section`
   @apply bg-white rounded-lg shadow-sm mx-auto my-8 max-w-7xl;
   border: 1px solid #f0f0f0;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;

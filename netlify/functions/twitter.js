@@ -77,6 +77,13 @@ export const handler = async (event) => {
   } catch (error) {
     console.error('Twitter API Error:', error);
 
+    // Log error details but don't expose token
+    console.log(`Error details: ${JSON.stringify({
+      status: error.status,
+      message: error.message,
+      name: error.name
+    })}`);
+
     if (error.status === 429) {
       const resetTime = error.headers?.['x-rate-limit-reset'];
       return sendResponse(429, {
@@ -86,9 +93,8 @@ export const handler = async (event) => {
     }
 
     return sendResponse(500, {
-      error: `Failed to fetch tweets ${error.message}`,
-      message: error,
-      token: process.env.TWITTER_BEARER_TOKEN
+      error: 'Failed to fetch tweets',
+      message: error.message || 'Unknown error'
     });
   }
 };
