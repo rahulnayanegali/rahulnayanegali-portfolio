@@ -10,22 +10,8 @@
   external_node_modules = ["express"]
   node_bundler = "esbuild"
 
+# Domain redirects should come FIRST (before the catch-all)
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/api/twitter/*"
-  to = "/.netlify/functions/twitter/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-  [[redirects]]
   from = "https://rahulnayanegali.netlify.app/*"
   to = "https://rahulnayanegali.dev/:splat"
   status = 301
@@ -36,3 +22,20 @@
   to = "https://rahulnayanegali.dev/:splat"
   status = 301
   force = true
+
+# API redirects
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/twitter/*"
+  to = "/.netlify/functions/twitter/:splat"
+  status = 200
+
+# This catch-all should be LAST
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
