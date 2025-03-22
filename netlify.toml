@@ -24,3 +24,15 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+  [[redirects]]
+  from = "https://rahulnayanegali.netlify.app/*"
+  to = "https://rahulnayanegali.dev/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://rahulnayanegali.netlify.app/*"
+  to = "https://rahulnayanegali.dev/:splat"
+  status = 301
+  force = true
