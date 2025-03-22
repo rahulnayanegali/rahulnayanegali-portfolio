@@ -1,1 +1,3 @@
+# Redirect from Netlify subdomain to custom domain
 https://rahulnayanegali.netlify.app/* https://rahulnayanegali.dev/:splat 301!
+http://rahulnayanegali.netlify.app/* https://rahulnayanegali.dev/:splat 301!
