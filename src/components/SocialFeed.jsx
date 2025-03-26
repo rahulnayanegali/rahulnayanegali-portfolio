@@ -230,7 +230,7 @@ const SocialFeed = () => {
   );
 
   const renderTweets = () => (
-    <div className="masonry-grid">
+    <div className="masonry-grid" id='tweets'>
       {state.tweets.map(tweet => (
         <TweetContainer key={tweet.id} className="tweet-container" data-testid="tweet-container">
           <blockquote

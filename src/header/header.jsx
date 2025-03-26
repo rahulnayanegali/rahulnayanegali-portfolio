@@ -32,7 +32,7 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: 'About', href: '#about' },
+        { name: 'Tweets', href: '#tweets' },
         { name: 'Projects', href: '#projects' },
         { name: 'Contact', href: '#footer' }
     ];

@@ -133,7 +133,7 @@ const Hero = () => {
               const footerElement = document.querySelector('#footer');
               if (footerElement) {
                 window.scrollTo({
-                  top: footerElement.offsetTop - 80, // Adjust offset based on your header height
+                  top: footerElement.offsetTop - 80, 
                   behavior: 'smooth'
                 });
               }
