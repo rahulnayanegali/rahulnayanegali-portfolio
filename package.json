@@ -10,6 +10,7 @@
     "build": "vite build && npm run build:functions",
     "build:functions": "cd netlify/functions && npm install",
     "preview": "vite preview",
+    "generate-pdf": "node generate_resume_pdf.cjs",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
@@ -24,6 +25,7 @@
     "express-rate-limit": "^7.5.0",
     "framer-motion": "^12.5.0",
     "node-cache": "^5.1.2",
+    "node-latex-pdf": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.0",

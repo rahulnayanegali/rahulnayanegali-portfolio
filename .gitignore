@@ -31,3 +31,7 @@ yarn-error.log*
 
 # Build
 /dist
+# LaTeX intermediate files
+*.aux
+*.log
+*.out

@@ -1,0 +1,158 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake
+% Modified for: Rahul Nayanegali
+% License : MIT
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{lmodern}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+
+%-------------------------
+% Custom Commands
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%% RESUME STARTS HERE %%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Rahul Nayanegali} \\ \vspace{1pt}
+    \small 551-399-9002 $|$ \href{mailto:nayanegali.rahul@gmail.com}{\underline{nayanegali.rahul@gmail.com}} $|$
+    \href{https://linkedin.com/in/rahulnayanegali}{\underline{Linkedin}} $|$
+    \href{https://rahulnayanegali.dev}{\underline{rahulnayanegali.dev}}
+\end{center}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Frontend}{: React 18, TypeScript, JavaScript (ES6+), Redux, React Query, Micro-Frontends} \\
+     \textbf{Backend}{: Java, Node.js, REST APIs} \\
+     \textbf{Architecture}{: TDD, Workflow engines, domain modeling, modular architecture, SOLID, dependency inversion} \\
+     \textbf{Testing}{: Vitest, Jest, Cypress, Playwright} \\
+     \textbf{Cloud \& DevOps}{: AWS (Lambda, S3, CloudWatch), CI/CD pipelines} \\
+     \textbf{Tools}{: Chrome Extensions, Vite/Webpack, Git}
+    }}
+ \end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    % Amazon
+    \resumeSubheading
+      {Software Development Engineer}{Jun 2025 -- Present}
+      {Amazon}{Seattle, WA}
+      \resumeItemListStart
+        \resumeItem{Modernized a large legacy system using the Strangler Fig pattern, enabling incremental migration to a modular declarative architecture without production disruption.}
+        \resumeItem{Designed and built \textbf{ActionWidget}, a reusable workflow engine powering multi-step compliance workflows with conditional logic, 10+ field types, uploads, and registry-backed state.}
+        \resumeItem{Implemented a domain translation layer converting business APIs into generic workflow schemas, decoupling UI from domain logic and improving maintainability.}
+        \resumeItem{Established clear feature boundaries (ActionWidget, PolicyWorkflow, ProactiveCompliance, IssueRemediation) with modular components, hooks, and utilities to improve composability and testability.}
+      \resumeItemListEnd
+
+    % Shoptaki
+    \resumeSubheading
+      {Software Engineer}{Aug 2024 -- Jun 2025}
+      {Shoptaki}{New York, NY}
+      \resumeItemListStart
+        \resumeItem{Built scalable, reusable React + TypeScript components improving feature velocity across frontend teams.}
+        \resumeItem{Strengthened CI/CD reliability by introducing Vitest-based testing and modernizing build pipelines.}
+        \resumeItem{Developed and optimized Node.js REST APIs with ArangoDB for graph-based data retrieval.}
+      \resumeItemListEnd
+
+    % Aquila Test
+    \resumeSubheading
+      {Software Engineer (Part-Time)}{Jul 2023 -- May 2025}
+      {Aquila Test}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built a QA automation Chrome extension in React 18 + TypeScript, reducing workflow creation time \textbf{from 2 days to under 20 minutes (95\% faster)}.}
+        \resumeItem{Delivered full product lifecycle: architecture, development, documentation, deployment, and internal tooling.}
+        \resumeItem{Implemented robust test suites with Vitest and mentored engineers on React and TypeScript best practices.}
+      \resumeItemListEnd
+
+    % CodeCraft
+    \resumeSubheading
+      {Web Development Engineer}{Feb 2021 -- Jan 2023}
+      {CodeCraft Technologies}{Bangalore, India}
+      \resumeItemListStart
+        \resumeItem{Built customizable survey, leaderboard, and voting UIs for enterprise clients.}
+        \resumeItem{Modernized legacy JavaScript codebases to ES standards and migrated components to React.}
+      \resumeItemListEnd
+
+    % TCS
+    \resumeSubheading
+      {Assistant Systems Engineer}{Nov 2018 -- Apr 2020}
+      {Tata Consultancy Services}{Bangalore, India}
+      \resumeItemListStart
+        \resumeItem{Built real-time IoT dashboards using React, Flask, SSE, and AWS Lambda for large-scale sensor monitoring.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Pace University}{New York, NY}
+      {Master of Science in Computer Science}{}
+      \resumeItemListStart
+        \resumeItem{Received the \textbf{Computer Science Departmental Award} for outstanding academic performance.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\end{document}
