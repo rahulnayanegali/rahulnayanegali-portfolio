@@ -34,6 +34,13 @@
   to = "/.netlify/functions/twitter/:splat"
   status = 200
 
+# Resume redirect
+[[redirects]]
+  from = "/resume"
+  to = "/resume/rahulnayanegali_resume.pdf"
+  status = 200
+  force = true
+
 # This catch-all should be LAST
 [[redirects]]
   from = "/*"
