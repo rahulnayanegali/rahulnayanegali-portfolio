@@ -41,6 +41,13 @@
   status = 200
   force = true
 
+# Extended Resume redirect
+[[redirects]]
+  from = "/resume_extended"
+  to = "/resume/rahulnayanegali_resume_extended.pdf"
+  status = 200
+  force = true
+
 # This catch-all should be LAST
 [[redirects]]
   from = "/*"
