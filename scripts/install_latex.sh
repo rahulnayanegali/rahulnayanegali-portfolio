@@ -33,8 +33,7 @@ else
     # Install packages required by the resume
     # Note: We install packages even if local .sty files exist to ensure fonts and dependencies are present
     "$TINYTEX_BIN/tlmgr" install \
-        lmodern \
-        latexsym \
+        lm \
         marvosym \
         graphics \
         tools \
@@ -43,7 +42,6 @@ else
         fancyhdr \
         babel \
         babel-english \
-        tabularx \
         geometry \
         oberdiek \
         url \
