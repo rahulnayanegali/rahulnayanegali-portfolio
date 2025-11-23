@@ -1,0 +1,30 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fullpage}[1999/02/23 1.1 (PWD)]
+\newdimen\fp@margin
+\fp@margin=1in
+\DeclareOption{in}{\fp@margin=1in}
+\DeclareOption{cm}{\fp@margin=1.5cm}
+\DeclareOption{plain}{\pagestyle{plain}}
+\DeclareOption{empty}{\pagestyle{empty}}
+\DeclareOption{headings}{\pagestyle{headings}}
+\DeclareOption{myheadings}{\pagestyle{myheadings}}
+\ProcessOptions
+
+% Zero out header/footer for resume to maximize space and remove extra top margin
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\footskip}{0pt}
+
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-2\fp@margin}
+\setlength{\oddsidemargin}{\fp@margin}
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-2\fp@margin}
+% Note: We do not subtract headheight/headsep/footskip as they are now 0
+
+\setlength{\topmargin}{\fp@margin}
+\addtolength{\topmargin}{-1in}
+\endinput
