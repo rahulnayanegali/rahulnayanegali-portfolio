@@ -5,6 +5,11 @@ const path = require('path');
 // Add BasicTeX bin directory to PATH so pdflatex can be found (macOS only)
 if (process.platform === 'darwin') {
     process.env.PATH = `${process.env.PATH}${path.delimiter}/Library/TeX/texbin`;
+} else if (process.platform === 'linux') {
+    // Add TinyTeX bin directory to PATH for Netlify/Linux
+    const os = require('os');
+    const tinyTexBin = path.join(os.homedir(), '.TinyTeX', 'bin', 'x86_64-linux');
+    process.env.PATH = `${process.env.PATH}${path.delimiter}${tinyTexBin}`;
 }
 
 const inputPath = path.join(__dirname, 'public', 'resume', "rahulnayanegali_resume.tex");

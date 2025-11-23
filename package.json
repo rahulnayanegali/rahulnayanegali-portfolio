@@ -10,7 +10,7 @@
     "build": "npm run generate-pdf && vite build && npm run build:functions",
     "build:functions": "cd netlify/functions && npm install",
     "preview": "vite preview",
-    "generate-pdf": "node generate_resume_pdf.cjs",
+    "generate-pdf": "bash scripts/install_latex.sh && node generate_resume_pdf.cjs",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
