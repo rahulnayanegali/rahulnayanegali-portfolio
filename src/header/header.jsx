@@ -73,12 +73,12 @@ const Header = () => {
                             key={index}
                             href={link.href}
                             className={`relative text-lg font-medium transition-colors duration-300 ${isScrolled
-                                    ? isActive(link.href)
-                                        ? 'text-blue-600'
-                                        : 'text-gray-700 hover:text-blue-600'
-                                    : isActive(link.href)
-                                        ? 'text-blue-300'
-                                        : 'text-gray-100 hover:text-blue-300'
+                                ? isActive(link.href)
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700 hover:text-blue-600'
+                                : isActive(link.href)
+                                    ? 'text-blue-300'
+                                    : 'text-gray-100 hover:text-blue-300'
                                 }`}
                         >
                             {link.name}
@@ -94,14 +94,14 @@ const Header = () => {
                     ))}
 
                     <motion.a
-                        href="https://rahulnayanegali.github.io/resume/"
+                        href="https://rahulnayanegali.dev/resume/"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className={`px-5 py-2 rounded-md ${isScrolled
-                                ? 'bg-blue-600 text-white hover:bg-blue-700'
-                                : 'bg-white text-gray-900 hover:bg-gray-100'
+                            ? 'bg-blue-600 text-white hover:bg-blue-700'
+                            : 'bg-white text-gray-900 hover:bg-gray-100'
                             } font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                     >
                         Resume
