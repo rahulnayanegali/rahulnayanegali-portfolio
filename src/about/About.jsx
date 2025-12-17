@@ -108,7 +108,7 @@ const Hero = () => {
           variants={itemVariants}
         >
           I architect exceptional <span className="relative inline-block">
-            React applications
+            frontend systems
             <span className="absolute -bottom-1 left-0 w-full h-1 bg-blue-400 rounded-full"></span>
           </span>
         </motion.h2>
@@ -117,9 +117,9 @@ const Hero = () => {
           className="mt-6 text-lg text-gray-600 max-w-xl"
           variants={itemVariants}
         >
-          Specializing in high-performance React ecosystems with TypeScript,
-          Next.js, and advanced state management patterns.
-          Delivering scalable frontend architectures that drive business outcomes.
+          Specializing in high-performance React ecosystems, advanced state management,
+          and rock-solid testing strategies. I build scalable architectures
+          that drive business velocity and user engagement.
         </motion.p>
 
         <motion.div
@@ -191,7 +191,7 @@ const Hero = () => {
           className="mt-10 grid grid-cols-3 gap-6 max-w-md"
           variants={itemVariants}
         >
-          {['React', 'TypeScript', 'Next.js'].map((tech, index) => (
+          {['React', 'TypeScript', 'Next.js', 'GraphQL', 'AWS', 'Testing'].map((tech, index) => (
             <div key={index} className="flex flex-col items-center justify-center">
               <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
                 <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
