@@ -53,9 +53,8 @@ const Header = () => {
                         transition={{ duration: 0.5 }}
                         className="flex items-center"
                     >
-                        <span className={`font-bold text-2xl md:text-3xl tracking-tight ${
-                            isScrolled ? 'text-gray-900 group-hover:text-blue-600' : 'text-white group-hover:text-blue-300'
-                        } transition-colors duration-300`}>
+                        <span className={`font-bold text-2xl md:text-3xl tracking-tight ${isScrolled ? 'text-gray-900 group-hover:text-blue-600' : 'text-white group-hover:text-blue-300'
+                            } transition-colors duration-300`}>
                             Rahul Nayanegali
                         </span>
                         <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
@@ -73,23 +72,21 @@ const Header = () => {
                         <a
                             key={index}
                             href={link.href}
-                            className={`relative text-lg font-medium transition-colors duration-300 ${
-                                isScrolled
+                            className={`relative text-lg font-medium transition-colors duration-300 ${isScrolled
                                     ? isActive(link.href)
                                         ? 'text-blue-600'
                                         : 'text-gray-700 hover:text-blue-600'
                                     : isActive(link.href)
                                         ? 'text-blue-300'
                                         : 'text-gray-100 hover:text-blue-300'
-                            }`}
+                                }`}
                         >
                             {link.name}
                             {isActive(link.href) && (
                                 <motion.div
                                     layoutId="activeIndicator"
-                                    className={`absolute -bottom-1 left-0 w-full h-0.5 ${
-                                        isScrolled ? 'bg-blue-600' : 'bg-blue-300'
-                                    }`}
+                                    className={`absolute -bottom-1 left-0 w-full h-0.5 ${isScrolled ? 'bg-blue-600' : 'bg-blue-300'
+                                        }`}
                                     transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                                 />
                             )}
@@ -102,11 +99,10 @@ const Header = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`px-5 py-2 rounded-md ${
-                            isScrolled
+                        className={`px-5 py-2 rounded-md ${isScrolled
                                 ? 'bg-blue-600 text-white hover:bg-blue-700'
                                 : 'bg-white text-gray-900 hover:bg-gray-100'
-                        } font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+                            } font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                     >
                         Resume
                     </motion.a>
@@ -151,7 +147,7 @@ const Header = () => {
                             ))}
                             <div className="pt-2">
                                 <a
-                                    href="https://rahulnayanegali.github.io/resume/"
+                                    href="https://rahulnayanegali.dev/resume/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block w-full text-center py-3 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors duration-300"
