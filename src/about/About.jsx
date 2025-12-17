@@ -92,7 +92,7 @@ const Hero = () => {
           variants={itemVariants}
         >
           <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full">
-            Senior React Developer
+            Frontend Engineer
           </span>
         </motion.div>
 
@@ -133,7 +133,7 @@ const Hero = () => {
               const footerElement = document.querySelector('#footer');
               if (footerElement) {
                 window.scrollTo({
-                  top: footerElement.offsetTop - 80, 
+                  top: footerElement.offsetTop - 80,
                   behavior: 'smooth'
                 });
               }
