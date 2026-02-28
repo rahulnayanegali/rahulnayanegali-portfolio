@@ -1,0 +1,25 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "command": "pnpm --filter @rahul-portfolio/web run dev",
+      "cache": false
+    },
+    "build": {
+      "command": "pnpm --filter @rahul-portfolio/web run build",
+      "cache": true,
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "preview": {
+      "command": "pnpm --filter @rahul-portfolio/web run preview",
+      "cache": true
+    },
+    "lint": {
+      "command": "pnpm --filter @rahul-portfolio/web run lint",
+      "cache": true
+    }
+  }
+}
