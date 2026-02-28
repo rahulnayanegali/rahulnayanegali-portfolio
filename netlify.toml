@@ -1,7 +1,7 @@
 [build]
   command = "pnpm run build"
-  publish = "dist"
-  functions = "netlify/functions"
+  publish = "apps/web/dist"
+  functions = "apps/web/netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
