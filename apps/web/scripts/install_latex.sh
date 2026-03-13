@@ -25,7 +25,7 @@ else
     
     # Download and install TinyTeX (minimal)
     # --admin --no-path prevents it from trying to modify shell profiles which might fail or not load
-    wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh -s - --admin --no-path
+    wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh -s -- --admin --no-path
     
     add_to_path
     
