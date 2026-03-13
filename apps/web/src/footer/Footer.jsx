@@ -67,10 +67,10 @@ export default function Footer() {
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
                         </h3>
                         <p className="text-sm leading-relaxed">
-                            Engineered with React, Vite, and TailwindCSS. Crafted with modern architecture principles and performance optimization techniques.
+                            Built with React, Vite, and TailwindCSS. A personal portfolio site showcasing my work and projects.
                         </p>
                         <p className="text-sm mt-3 leading-relaxed">
-                            Implemented with component-based design, lazy loading, and a focus on Core Web Vitals metrics.
+                            Hosted on Netlify with continuous deployment.
                         </p>
                     </div>
 
@@ -163,10 +163,10 @@ export default function Footer() {
                         </h3>
                         <div className="flex flex-wrap justify-center md:justify-end gap-3 mt-4">
                             <span className="px-3 py-1 bg-gray-800 rounded-full text-xs font-medium hover:bg-gray-700 transition-colors duration-300 flex items-center">
-                                <SiReact className="mr-1 text-blue-400" /> React {React.version}
+                                <SiReact className="mr-1 text-blue-400" /> React 18
                             </span>
                             <span className="px-3 py-1 bg-gray-800 rounded-full text-xs font-medium hover:bg-gray-700 transition-colors duration-300 flex items-center">
-                                <SiVite className="mr-1 text-purple-400" /> Vite 5.0
+                                <SiVite className="mr-1 text-purple-400" /> Vite 5.1
                             </span>
                             <span className="px-3 py-1 bg-gray-800 rounded-full text-xs font-medium hover:bg-gray-700 transition-colors duration-300 flex items-center">
                                 <SiTailwindcss className="mr-1 text-cyan-400" /> TailwindCSS 3.3
@@ -175,9 +175,9 @@ export default function Footer() {
                         
                         {/* Performance stats */}
                         <div className="mt-6 text-sm text-gray-400">
-                            <p className="flex items-center justify-end"><span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span> 100% Test Coverage</p>
-                            <p className="flex items-center justify-end"><span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span> A11y Compliant</p>
-                            <p className="flex items-center justify-end"><span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Mobile Optimized</p>
+                            <p className="flex items-center justify-end"><span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Responsive Design</p>
+                            <p className="flex items-center justify-end"><span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span> Open Source</p>
+                            <p className="flex items-center justify-end"><span className="w-2 h-2 rounded-full bg-yellow-500 mr-2"></span> Continuously Improved</p>
                         </div>
                     </div>
                 </div>
