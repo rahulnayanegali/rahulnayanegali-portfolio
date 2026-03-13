@@ -11,7 +11,7 @@
     "dev": "netlify dev",
     "client": "vite",
     "server": "node api/server.js",
-    "build": "pnpm run generate-pdf && vite build && pnpm run build:functions",
+    "build": "vite build && pnpm run build:functions",
     "build:functions": "cd netlify/functions && pnpm install",
     "preview": "vite preview",
     "generate-pdf": "bash scripts/install_latex.sh && node generate_resume_pdf.cjs",
