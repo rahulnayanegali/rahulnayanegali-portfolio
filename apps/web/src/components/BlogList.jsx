@@ -34,9 +34,7 @@ const BlogList = () => {
         {blogs.map((blog, index) => (
           <motion.a
             key={blog.slug}
-            href={blog.url || '#'}
-            target={blog.url ? '_blank' : '_self'}
-            rel={blog.url ? 'noopener noreferrer' : undefined}
+            href={`/blog/${blog.slug}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}

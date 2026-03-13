@@ -32,7 +32,7 @@ const blogs = blogFiles.map(({ filename, content }) => {
     title,
     tldr,
     date: data.date ? new Date(data.date) : new Date(0),
-    url: data.url || null
+    content: markdown
   };
 });
 

@@ -9,6 +9,7 @@ import {
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from './theme/theme';
 import BlogList from './components/BlogList';
+import BlogPost from './components/BlogPost';
 import Archived from './archived/Archived';
 import Footer from './footer/Footer';
 
@@ -27,6 +28,9 @@ export default function App() {
                         <Switch>
                             <Route exact path="/">
                                 <BlogList />
+                            </Route>
+                            <Route path="/blog/:slug">
+                                <BlogPost />
                             </Route>
                             <Route path="/archived">
                                 <Archived />

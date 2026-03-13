@@ -1,3 +1,9 @@
+---
+title: "Portfolio Redesign: Adding Blog Section & Archiving Current Content"
+tldr: "Transform the portfolio main page from static content to a dynamic blog listing, move existing sections (About, Tweets, Projects) to an archived page, and implement a markdown-based blog system."
+date: "2024-01-15"
+---
+
 # Portfolio Redesign: Adding Blog Section & Archiving Current Content
 
 ## TLDR
