@@ -31,11 +31,18 @@ const Header = () => {
         return location.pathname === href;
     };
 
-    const navLinks = [
-        { name: 'Tweets', href: '#tweets' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Contact', href: '#footer' }
-    ];
+    const isArchivedPage = location.pathname === '/archived';
+
+    const navLinks = isArchivedPage
+        ? [
+            { name: 'Home', href: '/' },
+            { name: 'Tweets', href: '#tweets' },
+            { name: 'Projects', href: '#projects' },
+            { name: 'Contact', href: '#footer' }
+        ]
+        : [
+            { name: 'Archive', href: '/archived' }
+        ];
 
     return (
         <header
