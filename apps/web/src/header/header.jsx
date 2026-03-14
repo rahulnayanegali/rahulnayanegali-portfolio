@@ -38,10 +38,12 @@ const Header = () => {
             { name: 'Home', href: '/' },
             { name: 'Tweets', href: '#tweets' },
             { name: 'Projects', href: '#projects' },
-            { name: 'Contact', href: '#footer' }
+            { name: 'Contact', href: '#footer' },
+            { name: 'Lab', href: '/lab.html', external: true }
         ]
         : [
-            { name: 'Archive', href: '/archived' }
+            { name: 'Archive', href: '/archived' },
+            { name: 'Lab', href: '/lab.html', external: true }
         ];
 
     return (
@@ -79,6 +81,7 @@ const Header = () => {
                         <a
                             key={index}
                             href={link.href}
+                            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                             className={`relative text-lg font-medium transition-colors duration-300 ${isScrolled
                                 ? isActive(link.href)
                                     ? 'text-blue-600'
@@ -144,6 +147,7 @@ const Header = () => {
                                 <a
                                     key={index}
                                     href={link.href}
+                                    {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                                     className={`block py-3 text-center text-xl font-medium ${isActive(link.href)
                                         ? 'text-blue-600'
                                         : 'text-gray-700 hover:text-blue-600'

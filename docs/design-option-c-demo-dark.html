@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Option C — Refined Dark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #0d1117;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      color: #e6edf3;
+      min-height: 100vh;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ───────────────────────────────────────────────────────── -->
+  <header style="
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  ">
+    <div style="
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    ">
+
+      <!-- Identity -->
+      <div>
+        <div style="
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #e6edf3;
+          letter-spacing: -0.02em;
+          display: flex;
+          align-items: baseline;
+          gap: 5px;
+        ">
+          <span aria-hidden="true" style="color: #3b82f6; font-family: 'Space Mono', monospace;">&gt;</span>
+          <span style="font-family: 'Space Mono', monospace;">Rahul Nayanegali</span>
+          <span
+            aria-hidden="true"
+            class="cursor"
+            style="
+              color: #3b82f6;
+              font-family: 'Space Mono', monospace;
+              animation: blink 1s step-end infinite;
+            "
+          >_</span>
+        </div>
+        <div style="
+          font-size: 0.75rem;
+          color: #8b949e;
+          margin-top: 3px;
+          letter-spacing: 0.03em;
+          font-family: 'Space Mono', monospace;
+        ">
+          Frontend Engineer
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav style="display: flex; align-items: center; gap: 24px;">
+        <a href="/archived" style="
+          font-size: 0.82rem;
+          color: #8b949e;
+          text-decoration: none;
+          letter-spacing: 0.02em;
+        "
+          onmouseover="this.style.color='#e6edf3'"
+          onmouseout="this.style.color='#8b949e'"
+        >Archive</a>
+
+        <a href="https://rahulnayanegali.dev/resume/" target="_blank" rel="noopener noreferrer" style="
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: #e6edf3;
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.15);
+          text-decoration: none;
+          padding: 6px 14px;
+          border-radius: 6px;
+          letter-spacing: 0.03em;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          transition: border-color 0.15s;
+        "
+          onmouseover="this.style.borderColor='rgba(59,130,246,0.6)'; this.style.color='#3b82f6'"
+          onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='#e6edf3'"
+        >
+          Resume
+          <span aria-hidden="true" style="font-size: 0.7rem;">↗</span>
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- ─── MAIN ─────────────────────────────────────────────────────────── -->
+  <main style="
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 52px 24px 100px;
+  ">
+
+    <!-- Featured card -->
+    <a href="/blog/PORTFOLIO_REDESIGN_PLAN" style="
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #161b22;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 3px solid #3b82f6;
+      padding: 28px 32px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    "
+      onmouseover="this.style.borderColor='rgba(59,130,246,0.5)'; this.style.boxShadow='0 0 0 1px rgba(59,130,246,0.15), 0 8px 32px rgba(0,0,0,0.4)'"
+      onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.borderLeftColor='#3b82f6'; this.style.boxShadow='none'"
+    >
+
+      <!-- Badge -->
+      <div style="
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #3b82f6;
+        margin-bottom: 14px;
+        font-family: 'Space Mono', monospace;
+      ">
+        &#9619; Latest
+      </div>
+
+      <!-- Title + Date -->
+      <div style="
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        flex-wrap: wrap;
+      ">
+        <h2 style="
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #e6edf3;
+          letter-spacing: -0.02em;
+          line-height: 1.3;
+        ">
+          Portfolio Redesign Plan
+        </h2>
+        <span style="
+          font-size: 0.78rem;
+          color: #8b949e;
+          white-space: nowrap;
+          flex-shrink: 0;
+          font-family: 'Space Mono', monospace;
+        ">
+          Mar 13, 2026
+        </span>
+      </div>
+
+      <!-- Divider -->
+      <hr style="
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        margin: 14px 0;
+      " />
+
+      <!-- Excerpt -->
+      <p style="
+        font-size: 0.9rem;
+        color: #8b949e;
+        line-height: 1.75;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      ">
+        A complete rethink of how a portfolio should work in 2026 — with blogs
+        as the center of it. The goal was to move away from hero sections and
+        toward writing, letting the work speak through ideas rather than bullet
+        points and animated SVGs.
+      </p>
+
+      <!-- Footer row -->
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+      ">
+
+        <!-- Tags -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span style="
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: #8b949e;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 3px 10px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.02em;
+          ">React</span>
+          <span style="
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: #8b949e;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 3px 10px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.02em;
+          ">Architecture</span>
+        </div>
+
+        <!-- Read CTA -->
+        <div style="
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: #3b82f6;
+        ">
+          <span style="font-size: 0.75rem; color: #8b949e; font-weight: 400; font-family: 'Space Mono', monospace;">5 min</span>
+          <span style="color: #30363d;">·</span>
+          <span>Read</span>
+          <span aria-hidden="true" style="font-size: 0.8rem;">→</span>
+        </div>
+
+      </div>
+    </a>
+
+
+    <!-- All Posts header -->
+    <div style="
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 44px 0 0;
+    ">
+      <span style="
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8b949e;
+        white-space: nowrap;
+        font-family: 'Space Mono', monospace;
+      ">All Posts</span>
+      <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.07);"></div>
+    </div>
+
+
+    <!-- Post rows -->
+
+    <a href="/blog/vite-dx" style="
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: inherit;
+      gap: 16px;
+    "
+      onmouseover="this.style.borderBottomColor='rgba(59,130,246,0.4)'; this.querySelector('.rt').style.color='#3b82f6'"
+      onmouseout="this.style.borderBottomColor='rgba(255,255,255,0.05)'; this.querySelector('.rt').style.color='#c9d1d9'"
+    >
+      <div style="display: flex; align-items: baseline; gap: 12px;">
+        <span aria-hidden="true" style="color: #3b82f6; font-size: 0.75rem; flex-shrink: 0; font-family: 'Space Mono', monospace;">◈</span>
+        <span class="rt" style="font-size: 0.92rem; font-weight: 500; color: #c9d1d9;">Why Vite changed how I think about DX</span>
+      </div>
+      <span style="font-size: 0.75rem; color: #8b949e; white-space: nowrap; flex-shrink: 0; font-family: 'Space Mono', monospace;">Feb 2026</span>
+    </a>
+
+    <a href="/blog/state-management-2025" style="
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: inherit;
+      gap: 16px;
+    "
+      onmouseover="this.style.borderBottomColor='rgba(59,130,246,0.4)'; this.querySelector('.rt').style.color='#3b82f6'"
+      onmouseout="this.style.borderBottomColor='rgba(255,255,255,0.05)'; this.querySelector('.rt').style.color='#c9d1d9'"
+    >
+      <div style="display: flex; align-items: baseline; gap: 12px;">
+        <span aria-hidden="true" style="color: #3b82f6; font-size: 0.75rem; flex-shrink: 0; font-family: 'Space Mono', monospace;">◈</span>
+        <span class="rt" style="font-size: 0.92rem; font-weight: 500; color: #c9d1d9;">State management in 2025</span>
+      </div>
+      <span style="font-size: 0.75rem; color: #8b949e; white-space: nowrap; flex-shrink: 0; font-family: 'Space Mono', monospace;">Jan 2026</span>
+    </a>
+
+    <a href="/blog/testing" style="
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: inherit;
+      gap: 16px;
+    "
+      onmouseover="this.style.borderBottomColor='rgba(59,130,246,0.4)'; this.querySelector('.rt').style.color='#3b82f6'"
+      onmouseout="this.style.borderBottomColor='rgba(255,255,255,0.05)'; this.querySelector('.rt').style.color='#c9d1d9'"
+    >
+      <div style="display: flex; align-items: baseline; gap: 12px;">
+        <span aria-hidden="true" style="color: #3b82f6; font-size: 0.75rem; flex-shrink: 0; font-family: 'Space Mono', monospace;">◈</span>
+        <span class="rt" style="font-size: 0.92rem; font-weight: 500; color: #c9d1d9;">Writing tests you actually want to run</span>
+      </div>
+      <span style="font-size: 0.75rem; color: #8b949e; white-space: nowrap; flex-shrink: 0; font-family: 'Space Mono', monospace;">Dec 2025</span>
+    </a>
+
+    <a href="/blog/over-abstraction" style="
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: inherit;
+      gap: 16px;
+    "
+      onmouseover="this.style.borderBottomColor='rgba(59,130,246,0.4)'; this.querySelector('.rt').style.color='#3b82f6'"
+      onmouseout="this.style.borderBottomColor='rgba(255,255,255,0.05)'; this.querySelector('.rt').style.color='#c9d1d9'"
+    >
+      <div style="display: flex; align-items: baseline; gap: 12px;">
+        <span aria-hidden="true" style="color: #3b82f6; font-size: 0.75rem; flex-shrink: 0; font-family: 'Space Mono', monospace;">◈</span>
+        <span class="rt" style="font-size: 0.92rem; font-weight: 500; color: #c9d1d9;">The hidden cost of over-abstraction</span>
+      </div>
+      <span style="font-size: 0.75rem; color: #8b949e; white-space: nowrap; flex-shrink: 0; font-family: 'Space Mono', monospace;">Nov 2025</span>
+    </a>
+
+  </main>
+
+</body>
+</html>
