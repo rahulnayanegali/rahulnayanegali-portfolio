@@ -2,57 +2,91 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import blogs from '../blogs/blogs';
+
+const formatDate = (date) =>
+  new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const blog = blogs.find(b => b.slug === slug);
+  const blog = blogs.find((b) => b.slug === slug);
 
   if (!blog) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-2xl font-bold text-gray-900">Blog not found</h1>
-        <Link to="/" className="text-blue-600 hover:underline mt-4 inline-block">
-          Back to blogs
+      <div style={{ maxWidth: '48rem', margin: '0 auto', padding: '52px 24px' }}>
+        <h1 style={{ color: '#e6edf3', fontSize: '1.5rem', fontWeight: 700 }}>Post not found</h1>
+        <Link
+          to="/"
+          style={{ color: '#3b82f6', textDecoration: 'none', display: 'inline-block', marginTop: '16px' }}
+        >
+          ← Back to blogs
         </Link>
       </div>
     );
   }
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
-
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+      style={{ maxWidth: '48rem', margin: '0 auto', padding: '52px 24px 100px' }}
+    >
+      {/* Back link */}
+      <Link
+        to="/"
+        style={{
+          color: '#3b82f6',
+          textDecoration: 'none',
+          fontSize: '0.875rem',
+          display: 'inline-block',
+          marginBottom: '32px',
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#60a5fa')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = '#3b82f6')}
       >
-        <Link 
-          to="/" 
-          className="text-blue-600 hover:underline mb-8 inline-block"
-        >
-          ← Back to blogs
-        </Link>
+        ← Back to blogs
+      </Link>
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          {blog.title}
-        </h1>
+      {/* Title */}
+      <h1
+        style={{
+          color: '#e6edf3',
+          fontSize: '1.9rem',
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          lineHeight: 1.3,
+          marginBottom: '12px',
+        }}
+      >
+        {blog.title}
+      </h1>
 
-        <div className="text-gray-500 mb-8">
-          {formatDate(blog.date)}
-        </div>
+      {/* Date */}
+      <div
+        style={{
+          fontFamily: "'Space Mono', monospace",
+          fontSize: '0.78rem',
+          color: '#8b949e',
+          marginBottom: '40px',
+        }}
+      >
+        {formatDate(blog.date)}
+      </div>
 
-        <div className="prose prose-lg max-w-none">
-          <ReactMarkdown>{blog.content}</ReactMarkdown>
-        </div>
-      </motion.div>
-    </div>
+      {/* Prose */}
+      <div className="blog-prose">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+          {blog.content}
+        </ReactMarkdown>
+      </div>
+    </motion.div>
   );
 };
 
