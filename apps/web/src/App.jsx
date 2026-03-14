@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BlogLayout from './layouts/BlogLayout';
-import ArchivedLayout from './layouts/ArchivedLayout';
+import ArchivedLayout from './legacy/layouts/ArchivedLayout';
 import BlogList from './components/BlogList';
 import BlogPost from './components/BlogPost';
-import Archived from './archived/Archived';
+import Archived from './legacy/archived/Archived';
 
 export default function App() {
   return (
