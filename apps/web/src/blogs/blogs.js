@@ -1,45 +1,61 @@
-import { Buffer } from 'buffer';
-globalThis.Buffer = Buffer;
+import yaml from 'js-yaml';
 
-import matter from 'gray-matter';
-import portfolioRedesign from './PORTFOLIO_REDESIGN_PLAN.md?raw';
+/**
+ * @typedef {Object} BlogPost
+ * @property {string} slug
+ * @property {string} title
+ * @property {string} tldr
+ * @property {Date} date
+ * @property {string[]} tags
+ * @property {number} readTime
+ * @property {string} content
+ */
 
-const blogFiles = [
-  { filename: 'PORTFOLIO_REDESIGN_PLAN.md', content: portfolioRedesign }
-];
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) return { data: {}, content: raw };
+  return {
+    data: yaml.load(match[1]) || {},
+    content: match[2],
+  };
+}
 
 function readTime(markdown) {
   const words = markdown.trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 200));
 }
 
-const blogs = blogFiles.map(({ filename, content }) => {
-  const { data, content: markdown } = matter(content);
+const modules = import.meta.glob('./*.md', { query: '?raw', import: 'default', eager: true });
 
-  const lines = markdown.split('\n');
-  let title = data.title || 'Untitled';
+/** @type {BlogPost[]} */
+const blogs = Object.entries(modules).map(([path, raw]) => {
+  const slug = path.replace('./', '').replace('.md', '');
+  const { data, content } = parseFrontmatter(raw);
+
+  let title = data.title || '';
   let tldr = data.tldr || '';
 
-  if (title === 'Untitled') {
-    const h1Match = lines.find(line => line.startsWith('# '));
-    if (h1Match) title = h1Match.replace('# ', '').trim();
+  if (!title) {
+    const h1 = content.split('\n').find(l => l.startsWith('# '));
+    if (h1) title = h1.replace('# ', '').trim();
   }
 
   if (!tldr) {
-    const tldrIndex = lines.findIndex(line => line.startsWith('## TLDR'));
-    if (tldrIndex !== -1 && lines[tldrIndex + 1]) {
-      tldr = lines[tldrIndex + 1].replace(/^[-*\s]*/, '').trim();
+    const lines = content.split('\n');
+    const tldrIdx = lines.findIndex(l => l.startsWith('## TLDR'));
+    if (tldrIdx !== -1 && lines[tldrIdx + 1]) {
+      tldr = lines[tldrIdx + 1].replace(/^[-*\s]*/, '').trim();
     }
   }
 
   return {
-    slug: filename.replace('.md', ''),
-    title,
+    slug,
+    title: title || 'Untitled',
     tldr,
     date: data.date ? new Date(data.date) : new Date(0),
-    content: markdown,
-    tags: data.tags || [],
-    readTime: readTime(markdown),
+    tags: Array.isArray(data.tags) ? data.tags : [],
+    readTime: readTime(content),
+    content,
   };
 });
 
