@@ -24,4 +24,4 @@ Deep down I’m welcoming this upheaval uncomfortably because we as a human bein
 
 ## What's Next
 
-I don’t know how I should be adopting to this change and the advice on the internet is overwhelming. I’ve decided I’ll sleep over it to only allows my subconscious to understand this and show me a path ahead as inspired by Rich Hickey Hammock-Driven Development.
+I don’t know how I should be adopting to this change and the advice on the internet is overwhelming. I’ve decided I’ll sleep over it to only allow my subconscious to understand this and show me a path ahead as inspired by Rich Hickey Hammock-Driven Development.
