@@ -6,6 +6,20 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
+      },
+      colors: {
+        page: '#0d1117',
+        surface: '#161b22',
+      },
+      boxShadow: {
+        'card-hover': '0 0 0 1px rgba(59,130,246,0.15), 0 8px 32px rgba(0,0,0,0.4)',
+      },
+      maxWidth: {
+        content: '48rem',
+      },
       animation: {
         'gradient-x': 'gradient-x 15s ease infinite',
       },
@@ -22,21 +36,4 @@ export default {
     },
   },
   plugins: [],
-  extend: {
-    animation: {
-      'gradient-x': 'gradient-x 10s ease infinite',
-    },
-    keyframes: {
-      'gradient-x': {
-        '0%, 100%': {
-          'background-size': '200% 200%',
-          'background-position': 'left center',
-        },
-        '50%': {
-          'background-size': '200% 200%',
-          'background-position': 'right center',
-        },
-      },
-    },
-  },
 } 
