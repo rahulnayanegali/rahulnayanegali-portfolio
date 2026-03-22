@@ -17,7 +17,7 @@ Steps taken to solve 435. Non-overlapping Intervals
 BEFORE
 Whenever I come across an intervals problem, number line strikes to my mind and I drew it because it felt like progress.
 
-![alt text](../../public/blogs/intervals-number-line.jpg)
+![Number line showing intervals [1,3], [5,8], [4,10], [11,13] to visualize overlaps](/blogs/intervals-number-line.jpg)
 
 If we looked at it from a raw human intelligence, we can clearly make out removing `[4, 10]` makes rest of the intervals non overlapping right? so did I. Now how do you bring the problem down to a programetic level... 
 
