@@ -7,7 +7,7 @@ tags: [The Shapes of Code, Uncle Bob, discipline, simplicity]
 
 I realised subconsciously jumping towards picking up the tool before clearly understanding the nature of the problem. This not only affected my problem solving muscle memory but pushed my mind to wonder breadth wise and not depth.
 
-The reason behind this structure is to enforce a guardrails to approach a problem and reduce default mode overwhelming drifting across the ocean of ways. It forces you to narrow down the nature of the problem to help our brain pop a similar know and an early admit of not knowing the approach. This helps in saving time as well as an early realisation of unknown patterns or concepts.
+The reason behind this structure is to enforce a guardrails to approach a problem and reduce default mode overwhelming drifting across the ocean of ways. It forces you to narrow down the nature of the problem to help our brain pop a similar known problem or an early admit of not knowing the approach. This helps in saving time as well as an early realisation of unknown patterns or concepts.
 
 The structure I am following is inspired from the talk: [Hammock Driven Development - Rich Hickey](https://youtu.be/f84n5oFoZBc?si=0-HZKRxVmKbCzIw4)
 
