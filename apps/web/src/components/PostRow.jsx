@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const PostRow = ({ blog, index }) => {
   const d = new Date(blog.date);
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const date = `${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+  const date = `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
 
   return (
     <motion.div
