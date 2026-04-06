@@ -1,6 +1,6 @@
 ---
 title: The how was already in my inbox
-tldr: "I ran out my linkedin premium im-mail credits, my inbox had an answer to not stop cold reach outs."
+tldr: "I ran out my linkedin premium in-mail credits, my inbox had an answer to not stop cold reach outs."
 date: "2026-04-05"
 tags: [ "linkedin", "cold-outreach", "brain-dump"] 
 ---
