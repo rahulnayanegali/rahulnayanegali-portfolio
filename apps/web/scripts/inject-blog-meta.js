@@ -44,7 +44,6 @@ function injectMeta(html, { title, description, url }) {
   const u = escapeHtml(url);
   return html
     .replace(/<title>[^<]*<\/title>/, `<title>${t}</title>`)
-    .replace(/(<meta name="title" content=")[^"]*(")/,         `$1${t}$2`)
     .replace(/(<meta name="description" content=")[^"]*(")/,   `$1${d}$2`)
     .replace(/(<meta property="og:type" content=")[^"]*(")/,   `$1article$2`)
     .replace(/(<meta property="og:url" content=")[^"]*(")/,    `$1${u}$2`)
