@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm run build"
+  command = "pnpm run build && node apps/web/scripts/inject-blog-meta.js"
   publish = "apps/web/dist"
   functions = "apps/web/netlify/functions"
 
