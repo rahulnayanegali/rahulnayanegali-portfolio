@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -33,13 +32,6 @@ const BlogPost = () => {
   }
 
   return (
-    <>
-    <Helmet>
-      <title>{blog.title}</title>
-      {blog.tldr && <meta name="description" content={blog.tldr} />}
-      <meta property="og:title" content={blog.title} />
-      {blog.tldr && <meta property="og:description" content={blog.tldr} />}
-    </Helmet>
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
@@ -95,7 +87,6 @@ const BlogPost = () => {
         </ReactMarkdown>
       </div>
     </motion.div>
-    </>
   );
 };
 
