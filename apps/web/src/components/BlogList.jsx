@@ -12,6 +12,17 @@ const AllPostsHeader = () => (
   </div>
 );
 
+const Manifesto = () => (
+  <>
+    <p className="leading-[1.65]">
+      <span className="text-[22px] text-[#e6edf3]" style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontWeight: 900 }}>Breathe. Acclimatize.</span><br />
+      <span className="text-[17px] text-[#6e7681]" style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontWeight: 900 }}>A boundary to acclimatize from.</span><br />
+      <span className="text-[12px] text-[#6e7681] font-mono font-black">Dive. Understand. Redraw. Repeat.</span>
+    </p>
+    <div className="mt-[32px] h-px bg-white/[0.07]" />
+  </>
+);
+
 const BlogList = () => {
   if (blogs.length === 0) {
     return (
@@ -25,6 +36,7 @@ const BlogList = () => {
 
   return (
     <div className="max-w-content mx-auto px-6 py-[52px] pb-[100px]">
+      <Manifesto />
       <FeaturedCard blog={featured} />
       {rest.length > 0 && (
         <>
