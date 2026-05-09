@@ -92,7 +92,7 @@ const Hero = () => {
           variants={itemVariants}
         >
           <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full">
-            Frontend Engineer
+            Generalist Engineer
           </span>
         </motion.div>
 

@@ -73,7 +73,7 @@ const DarkHeader = () => {
                 fontFamily: "'Space Mono', monospace",
               }}
             >
-              Frontend Engineer
+              Generalist Engineer
             </div>
           </div>
         </Link>
