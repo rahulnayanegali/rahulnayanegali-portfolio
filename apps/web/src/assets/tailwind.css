@@ -49,6 +49,7 @@ body {
   padding: 12px 20px; background: rgba(59,130,246,0.06); color: #8b949e;
   border-radius: 0 6px 6px 0;
 }
+.blog-prose blockquote p { margin: 0; }
 .blog-prose hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 2rem 0; }
 .blog-prose code {
   font-family: 'Space Mono', monospace; font-size: 0.85em;
