@@ -32,7 +32,7 @@ const data: UserResponse = await res.json()
 ``` typescript
 // Downstream responding — no shared type, no contract
 // email is missing and nothing here will catch it
-res.json({ id: "123", name: "Rahul" })
+res.json({ id: "123", name: "John Doe" })
 ```
 
 Downstream shipped without email and nothing threw.
