@@ -43,7 +43,9 @@ Downstream has failed to honor the contract not because it is non-reliable by na
 
 However, people do enforce validation at client side with robust error handling to throw early.
 
->"Be conservative in what you do, be liberal in what you accept from others."— Postel's Law (The Robustness Principle)
+>"Be conservative in what you do, be liberal in what you accept from others."
+>
+> — Postel's Law (The Robustness Principle)
 
 Postel's Law is why client-side validation became the norm.
 
