@@ -31,6 +31,12 @@ const BlogPost = () => {
     );
   }
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      throw new Error('BlogPost: failed to load related tags');
+    }, 500);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
