@@ -77,27 +77,27 @@
 \end{center}
 
 %-----------SUMMARY-----------
-\section{Summary}
-  \small{
-    Senior Frontend Engineer with 6 years of experience building compliance-critical
-    web applications using \textbf{React}, \textbf{TypeScript}, and \textbf{Micro
-    Frontends (Module Federation)}. Specializes in schema-driven component
-    architecture, micro-frontend migrations, and state management at production
-    scale. Established TDD practices and AI-assisted \textbf{Playwright} pipelines
-    that cut test authoring time 63\% and raised E2E coverage 60\%.
-  }
+%\section{Summary}
+%  \small{
+%    Senior Frontend Engineer with 6 years of experience building compliance-critical
+%    web applications using \textbf{React}, \textbf{TypeScript}, and \textbf{Micro
+%    Frontends (Module Federation)}. Specializes in schema-driven component
+%    architecture, micro-frontend migrations, and state management at production
+%    scale. Established TDD practices and AI-assisted \textbf{Playwright} pipelines
+%    that cut test authoring time 63\% and raised E2E coverage 60\%.
+%  }
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-\textbf{Frontend}{: React 18, TypeScript, Next.js, Web Components, JavaScript, Core Web Vitals (LCP, INP, CLS), WCAG 2.2, State Management (Redux, Apollo Client)} \\
-      \textbf{Architecture}{: Micro Frontends (Module Federation), Monorepos (NX), Functional Programming, TDD, Clean Architecture, SOLID} \\
-      \textbf{AI-Augmented Engineering}{: Claude Code, Kiro, MCP, OpenCode CLI; prompt engineering (CoT, Few-Shot) for accelerated delivery} \\
-     \textbf{Testing}{: React Testing Library, Jest, Playwright, Cypress} \\
-     \textbf{Backend}{: Python, Flask, Node.js, REST APIs, GraphQL, WebSockets, SSE (Real-Time)} \\
-     \textbf{Cloud \& Tools}{: AWS (ECS, EC2, S3, Lambda, CloudFront), Docker, Chrome Extensions, Vite/Webpack, NX, Git, CI/CD} \\
-     \textbf{Certifications}{: AWS Certified Cloud Practitioner; Master JavaScript -- LinkedIn Learning} \\
+     \textbf{Languages}{: Java, Python, TypeScript, JavaScript} \\
+     \textbf{Backend}{: Java/Spring Boot, Node.js, Flask, REST APIs, GraphQL, gRPC, WebSockets, SSE} \\
+     \textbf{Databases}{: PostgreSQL, SQL} \\
+     \textbf{Cloud/Infra}{: AWS ECS, EC2, Lambda, S3, CloudFront, Docker, CI/CD} \\
+     \textbf{Frontend}{: React, Next.js, TypeScript} \\
+     \textbf{Testing}{: TDD, BDD, Pact, k6, Playwright, Cypress, Jest, Pytest} \\
+     \textbf{AI Engineering / Developer Tools}{: harness engineering, MCP, Claude Code, Kiro, OpenCode CLI, prompt engineering} \\
     }}
  \end{itemize}
 
@@ -107,24 +107,24 @@
 
     % Amazon
     \resumeSubheading
-      {Senior Frontend Engineer}{Jun 2025 -- Dec 2025}
-      {Amazon (Contract via Lares IT Solutions Inc)}{Seattle, WA}
+      {Software Development Engineer}{Jun 2025 -- Dec 2025}
+      {Amazon}{Seattle, WA}
       \resumeItemListStart
-        \resumeItem{Migrated a business-critical \textbf{React/TypeScript} frontend from legacy architecture to \textbf{micro-frontends (Module Federation)} using the \textbf{Strangler Fig} pattern; maintained zero production downtime across the incremental cutover.}
-        \resumeItem{Built and evolved schema-driven UI modules in \textbf{React} as a primary contributor to \textbf{ActionWidget}, a micro-frontend engine powering dynamic compliance workflows for Amazon sellers globally.}
-        \resumeItem{Implemented \textbf{TDD} and trunk-based development practices; stabilized production releases and reduced deployment cycle time across the frontend team.}
-        \resumeItem{Designed AI-assisted \textbf{Playwright} test authoring pipeline using BDD specifications as LLM context, cutting test authoring time 63\%, raising E2E coverage 60\%, and accelerating delivery velocity 30\%.}
-        \resumeItem{Raised code review quality by enforcing single-purpose diffs (structural refactors separated from behavioral changes), reducing cognitive load and integration risk during active Module Federation migration.}
+        \resumeItem{Co-owned Amazon Seller Central's compliance platform, a business-critical system where UI regressions directly block seller listings and impact revenue; re-architected ActionWidget from a hardcoded, regulation-specific system to a schema-driven micro-frontend using the Strangler Fig pattern, onboarding new regulations incrementally with zero production downtime.}
+        \resumeItem{Designed and built a \textbf{Java} \textbf{REST API} as a Backend for Frontend (\textbf{BFF}) layer for ActionWidget, consolidating calls to 3 internal Amazon APIs and translating aggregated responses into the widget's data contract; offloaded orchestration logic from the frontend and reduced browser round trips from 3 to 1.}
+        \resumeItem{Co-designed and built ActionWidget from scratch as a schema-driven, config-driven micro-frontend inspired by \textbf{hexagonal architecture}; decoupled regulation logic from rendering so new regulations onboard via config alone with no code change, replacing a hardcoded conditional-rendering system that blocked safe scaling.}
+        \resumeItem{Established \textbf{TDD} practices across the team by authoring tests around API contracts, error handling, and edge cases; enforced through \textbf{trunk-based development} and code review gates, stabilizing production releases and reducing regression risk on revenue-critical seller flows.}
+        \resumeItem{Designed AI-assisted \textbf{Playwright} test authoring pipeline using \textbf{BDD} specifications as LLM context, cutting test authoring time 63\%, raising E2E coverage 60\%, and accelerating delivery velocity 30\%.}
+        \resumeItem{Raised code review quality by enforcing single-purpose diffs, separating structural refactors from behavioral changes; smaller PRs surfaced potential bugs earlier, reducing regression risk during an active critical migration.}
       \resumeItemListEnd
         
         % Shoptaki
-        \resumeSubheading
-        {Senior Software Engineer}{Aug 2024 -- Jun 2025}
+      \resumeSubheading
+        {Software Engineer}{Aug 2024 -- Jun 2025}
         {Shoptaki}{New York, NY}
-        \resumeItemListStart
-        \resumeItem{As the sole frontend engineer during stealth phase, owned end-to-end delivery of three core product surfaces: plain-English-to-SQL query interface, developer dashboard, and user authentication flows.}
-        \resumeItem{Integrated an LLM with live database schema as context to power a natural-language SQL interface; reduced query turnaround from hours to seconds for non-technical team members.}
-        \resumeItem{Engineered developer dashboard from scratch serving the core engineering team across logs, metrics, and user management; built Firebase authentication API handling password change and account recovery end-to-end.}
+          \resumeItemListStart
+        \resumeItem{Engineered a Node.js service that automated text-to-SQL query execution for a natural language data interface; extracted live PostgreSQL schema context including table relationships, constraints, and join patterns, injected it alongside user queries into LLM prompts, and validated and sanitized generated SQL before execution against a staging database.}
+        \resumeItem{Built the query interface in React and TypeScript to handle dynamically shaped result sets where columns and types were unknown at build time; implemented async execution states, error surfaces, and adaptive table rendering to handle unpredictable LLM output shapes.}
       \resumeItemListEnd
 
     % Aquila Test AI
@@ -140,10 +140,10 @@
 
     % CodeCraft
     \resumeSubheading
-      {Engineer, Web Development}{Feb 2021 -- Jan 2023}
+      {Software Engineer}{Feb 2021 -- Jan 2023}
       {CodeCraft Technologies}{Bangalore, India}
       \resumeItemListStart
-      \resumeItem{Co-owned \textbf{React}/\textbf{TypeScript} component development for JioCinema on \textbf{Next.js 13} (Pages Router) with \textbf{Redux}; implemented \textbf{SSR} and code splitting via dynamic imports on streaming pages serving IPL and FIFA World Cup 2022 traffic.}  
+      \resumeItem{Co-owned \textbf{React}/\textbf{TypeScript} component development for JioCinema on \textbf{Next.js 13} (Pages Router) with \textbf{Redux}; implemented \textbf{SSR} and code splitting via dynamic imports on streaming pages serving IPL and FIFA World Cup 2022 traffic.}
       \resumeItem{Modernized build pipeline for a high-traffic streaming platform (Webpack/Babel upgrade, asset optimization); cut build times 50\% and unblocked ES6+ feature adoption.}
         \resumeItem{Migrated application state from \textbf{Redux} to \textbf{Apollo Client (GraphQL)}, implementing a unified GraphQL infrastructure layer; eliminated boilerplate and reduced bundle size 20\%.}
         \resumeItem{Built and maintained backend services in \textbf{Node.js} and Python on \textbf{AWS} (ECS, EC2, Lambda, S3); engineered robust data processing pipelines.}
