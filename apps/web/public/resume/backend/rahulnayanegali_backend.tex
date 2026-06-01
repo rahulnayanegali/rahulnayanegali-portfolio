@@ -38,8 +38,8 @@
 \setlength{\tabcolsep}{0in}
 
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-7pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-8pt}]
 
 \pdfgentounicode=1
 
@@ -51,7 +51,7 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \vspace{1pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
@@ -90,11 +90,11 @@
      \textbf{Backend}{: Java/Spring Boot, Node.js, Flask, REST APIs, GraphQL, gRPC, WebSockets, SSE} \\
      \textbf{Databases}{: PostgreSQL, SQL} \\
      \textbf{Cloud/Infra}{: AWS ECS, EC2, Lambda, S3, CloudFront, Docker, CI/CD} \\
-     \textbf{Frontend}{: React, Next.js, TypeScript} \\
      \textbf{Testing}{: TDD, BDD, Pact, k6, Playwright, Cypress, Jest, Pytest} \\
+     \textbf{Frontend}{: React, Next.js, TypeScript} \\
      \textbf{AI Engineering / Developer Tools}{: harness engineering, MCP, Claude Code, Kiro, OpenCode CLI, prompt engineering} \\
     }}
- \end{itemize}
+   \end{itemize}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
@@ -110,7 +110,7 @@
         \resumeItem{Re-architected ActionWidget from hardcoded regulation-specific UI logic into a schema-driven platform using the Strangler Fig pattern; decoupled regulation logic from rendering so new compliance flows onboard via config alone with no code changes.}
         \resumeItem{Established \textbf{TDD} practices across the team by authoring tests around API contracts, error handling, and edge cases; enforced through \textbf{trunk-based development} and code review gates, stabilizing production releases and reducing regression risk on revenue-critical seller flows.}
         \resumeItem{Designed AI-assisted \textbf{Playwright} test authoring pipeline using \textbf{BDD} specifications as LLM context, cutting test authoring time 63\%, raising E2E coverage 60\%, and accelerating delivery velocity 30\%.}
-        \resumeItem{Raised code review quality by enforcing single-purpose diffs, separating structural refactors from behavioral changes; smaller PRs surfaced potential bugs earlier, reducing regression risk during an active critical migration.}
+        % \resumeItem{Raised code review quality by enforcing single-purpose diffs, separating structural refactors from behavioral changes; smaller PRs surfaced potential bugs earlier, reducing regression risk during an active critical migration.}
       \resumeItemListEnd
         
         % Shoptaki
@@ -120,7 +120,7 @@
           \resumeItemListStart
         \resumeItem{Built a Node.js backend for a natural-language analytics interface that extracted live PostgreSQL schema metadata, relationships, constraints, and join patterns to generate context-aware SQL from user prompts.}
         \resumeItem{Added SQL validation, sanitization, and staging-database execution safeguards before query execution, reducing risk from malformed or unsafe LLM-generated SQL.}
-        \resumeItem{Built the query interface in React and TypeScript to handle dynamically shaped result sets where columns and types were unknown at build time; implemented async execution states, error surfaces, and adaptive table rendering to handle unpredictable LLM output shapes.}
+        % \resumeItem{Built the query interface in React and TypeScript to handle dynamically shaped result sets where columns and types were unknown at build time; implemented async execution states, error surfaces, and adaptive table rendering to handle unpredictable LLM output shapes.}
       \resumeItemListEnd
 
     % Aquila Test AI
@@ -139,11 +139,11 @@
       {Software Engineer}{Feb 2021 -- Jan 2023}
       {CodeCraft Technologies}{Bangalore, India}
       \resumeItemListStart
-        \resumeItem{Co-owned \textbf{React}/\textbf{TypeScript} component development for JioCinema on \textbf{Next.js 13} (Pages Router) with \textbf{Redux}; implemented \textbf{SSR} and code splitting via dynamic imports on streaming pages that served IPL and FIFA World Cup 2022 traffic, platform peak of 32M concurrent viewers.}
         \resumeItem{Built \textbf{Node.js} and Python backend services on \textbf{AWS} ECS/Lambda to process streaming-platform metadata and content workflows, exposing REST APIs and scheduled jobs for ingestion, transformation, and downstream UI consumption.}
         \resumeItem{Built full-stack audience-engagement features for Voot, including configurable surveys, show-specific quizzes, participant leaderboards, and real-time voting, deployed across multiple entertainment and reality-show properties on a platform serving 100M monthly active users.}
+        \resumeItem{Co-owned \textbf{React}/\textbf{TypeScript} component development for JioCinema on \textbf{Next.js 13} (Pages Router) with \textbf{Redux}; implemented \textbf{SSR} and code splitting via dynamic imports on streaming pages that served IPL and FIFA World Cup 2022 traffic, platform peak of 32M concurrent viewers.}
         \resumeItem{Modernized build pipeline for a high-traffic streaming platform (Webpack/Babel upgrade, asset optimization); cut build times 50\% and unblocked ES6+ feature adoption.}
-        \resumeItem{Migrated application state from \textbf{Redux} to \textbf{Apollo Client (GraphQL)}, implementing a unified GraphQL infrastructure layer; eliminated boilerplate and reduced bundle size 20\%.}
+        % \resumeItem{Migrated application state from \textbf{Redux} to \textbf{Apollo Client (GraphQL)}, implementing a unified GraphQL infrastructure layer; eliminated boilerplate and reduced bundle size 20\%.}
     \resumeItemListEnd
         
 
