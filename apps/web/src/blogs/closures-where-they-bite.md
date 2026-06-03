@@ -1,7 +1,7 @@
 ---
 title: "knowing closures and knowing where they bite you"
 tldr: "Tracing two closure traps that quietly cause memory leaks, and how I found them"
-date: "2026-03-29"
+date: "2026-05-30"
 tags: [memory leaks, closures, javascript]
 ---
 
