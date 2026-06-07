@@ -49,6 +49,20 @@
   status = 200
   force = true
 
+# Fullstack Resume redirect
+[[redirects]]
+  from = "/resume/fullstack"
+  to = "/resume/fullstack/rahulnayanegali_fullstack.pdf"
+  status = 200
+  force = true
+
+# Backend Resume redirect
+[[redirects]]
+  from = "/resume/backend"
+  to = "/resume/backend/rahulnayanegali_backend.pdf"
+  status = 200
+  force = true
+
 # This catch-all should be LAST
 [[redirects]]
   from = "/*"
