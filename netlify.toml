@@ -35,10 +35,16 @@
   to = "/.netlify/functions/twitter/:splat"
   status = 200
 
-# Resume redirects — routed through function for analytics tracking
+# Resume redirects — specific paths MUST come before /resume (Netlify prefix match)
 [[redirects]]
-  from = "/resume"
-  to = "/.netlify/functions/track-resume?file=default"
+  from = "/resume/fullstack"
+  to = "/.netlify/functions/track-resume?file=fullstack"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/resume/backend"
+  to = "/.netlify/functions/track-resume?file=backend"
   status = 200
   force = true
 
@@ -49,14 +55,8 @@
   force = true
 
 [[redirects]]
-  from = "/resume/fullstack"
-  to = "/.netlify/functions/track-resume?file=fullstack"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/resume/backend"
-  to = "/.netlify/functions/track-resume?file=backend"
+  from = "/resume"
+  to = "/.netlify/functions/track-resume?file=default"
   status = 200
   force = true
 
