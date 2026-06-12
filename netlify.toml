@@ -35,30 +35,22 @@
   to = "/.netlify/functions/twitter/:splat"
   status = 200
 
-# Resume redirects — specific paths MUST come before /resume (Netlify prefix match)
-[[redirects]]
-  from = "/resume/fullstack"
-  to = "/.netlify/functions/track-resume?file=fullstack"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/resume/backend"
-  to = "/.netlify/functions/track-resume?file=backend"
-  status = 200
-  force = true
-
+# Resume redirects — named placeholder passes path segment as query param
+# No force=true so actual PDF static files are served directly (prevents redirect loops)
 [[redirects]]
   from = "/resume_extended"
   to = "/.netlify/functions/track-resume?file=extended"
   status = 200
-  force = true
+
+[[redirects]]
+  from = "/resume/:variant"
+  to = "/.netlify/functions/track-resume?file=:variant"
+  status = 200
 
 [[redirects]]
   from = "/resume"
   to = "/.netlify/functions/track-resume?file=default"
   status = 200
-  force = true
 
 # This catch-all should be LAST
 [[redirects]]
