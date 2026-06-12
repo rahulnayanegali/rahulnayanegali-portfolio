@@ -35,31 +35,28 @@
   to = "/.netlify/functions/twitter/:splat"
   status = 200
 
-# Resume redirect
+# Resume redirects — routed through function for analytics tracking
 [[redirects]]
   from = "/resume"
-  to = "/resume/rahulnayanegali_resume.pdf"
+  to = "/.netlify/functions/track-resume?file=default"
   status = 200
   force = true
 
-# Extended Resume redirect
 [[redirects]]
   from = "/resume_extended"
-  to = "/resume/rahulnayanegali_resume_extended.pdf"
+  to = "/.netlify/functions/track-resume?file=extended"
   status = 200
   force = true
 
-# Fullstack Resume redirect
 [[redirects]]
   from = "/resume/fullstack"
-  to = "/resume/fullstack/rahulnayanegali_fullstack.pdf"
+  to = "/.netlify/functions/track-resume?file=fullstack"
   status = 200
   force = true
 
-# Backend Resume redirect
 [[redirects]]
   from = "/resume/backend"
-  to = "/resume/backend/rahulnayanegali_backend.pdf"
+  to = "/.netlify/functions/track-resume?file=backend"
   status = 200
   force = true
 

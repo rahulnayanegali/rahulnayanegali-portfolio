@@ -5,10 +5,17 @@ import ArchivedLayout from './legacy/layouts/ArchivedLayout';
 import BlogList from './components/BlogList';
 import BlogPost from './components/BlogPost';
 import Archived from './legacy/archived/Archived';
+import { useAnalytics } from './hooks/useAnalytics';
+
+function Analytics() {
+  useAnalytics();
+  return null;
+}
 
 export default function App() {
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <Analytics />
       <Routes>
         <Route element={<BlogLayout />}>
           <Route index element={<BlogList />} />
