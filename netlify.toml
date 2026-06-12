@@ -35,22 +35,30 @@
   to = "/.netlify/functions/twitter/:splat"
   status = 200
 
-# Resume redirects — named placeholder passes path segment as query param
-# No force=true so actual PDF static files are served directly (prevents redirect loops)
-[[redirects]]
-  from = "/resume_extended"
-  to = "/.netlify/functions/track-resume?file=extended"
-  status = 200
-
-[[redirects]]
-  from = "/resume/:variant"
-  to = "/.netlify/functions/track-resume?file=:variant"
-  status = 200
-
+# Resume redirects
 [[redirects]]
   from = "/resume"
-  to = "/.netlify/functions/track-resume?file=default"
+  to = "/resume/rahulnayanegali_resume.pdf"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/resume_extended"
+  to = "/resume/rahulnayanegali_resume_extended.pdf"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/resume/fullstack"
+  to = "/resume/fullstack/rahulnayanegali_fullstack.pdf"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/resume/backend"
+  to = "/resume/backend/rahulnayanegali_backend.pdf"
+  status = 200
+  force = true
 
 # This catch-all should be LAST
 [[redirects]]
