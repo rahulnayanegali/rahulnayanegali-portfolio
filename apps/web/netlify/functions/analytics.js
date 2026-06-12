@@ -65,9 +65,14 @@ export const handler = async (event) => {
   }
 
   try {
+    const rawUA = event.headers['user-agent'] || '';
+    if (/HeadlessChrome|bot|crawler|spider|Googlebot|facebookexternalhit/i.test(rawUA)) {
+      return { statusCode: 200, headers: cors, body: JSON.stringify({ ok: true }) };
+    }
+
     const body = JSON.parse(event.body || '{}');
     const geo = parseGeo(event.headers);
-    const ua = parseUA(event.headers['user-agent']);
+    const ua = parseUA(rawUA);
 
     await insertRow({
       path: body.path || null,
@@ -79,7 +84,7 @@ export const handler = async (event) => {
       country: geo.country,
       city: geo.city,
       timezone: geo.timezone,
-      user_agent: event.headers['user-agent'] || null,
+      user_agent: rawUA || null,
       browser: ua.browser,
       os: ua.os,
     });

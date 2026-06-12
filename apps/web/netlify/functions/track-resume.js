@@ -61,8 +61,13 @@ export const handler = async (event) => {
   const pdfPath = PDF_MAP[file] || PDF_MAP.default;
 
   try {
+    const rawUA = event.headers['user-agent'] || '';
+    if (/HeadlessChrome|bot|crawler|spider|Googlebot|facebookexternalhit/i.test(rawUA)) {
+      return { statusCode: 302, headers: { Location: pdfPath }, body: '' };
+    }
+
     const geo = parseGeo(event.headers);
-    const ua = parseUA(event.headers['user-agent']);
+    const ua = parseUA(rawUA);
 
     await insertRow({
       path: file === 'default' ? '/resume' : `/resume/${file}`,
