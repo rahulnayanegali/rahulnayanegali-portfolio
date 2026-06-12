@@ -57,7 +57,10 @@ async function insertRow(row) {
 }
 
 export const handler = async (event) => {
-  const file = event.queryStringParameters?.file || 'default';
+  // Derive variant from request path (/resume/fullstack -> fullstack) before
+  // falling back to query param, so 200-rewrites don't lose context.
+  const pathVariant = (event.path || '').split('/').filter(Boolean).pop();
+  const file = PDF_MAP[pathVariant] ? pathVariant : (event.queryStringParameters?.file || 'default');
   const pdfPath = PDF_MAP[file] || PDF_MAP.default;
 
   try {
@@ -69,10 +72,13 @@ export const handler = async (event) => {
     const geo = parseGeo(event.headers);
     const ua = parseUA(rawUA);
 
+    const referrer = event.headers['referer'] || null;
+    const source = referrer?.includes('rahulnayanegali.dev') ? 'portfolio_click' : 'direct';
+
     await insertRow({
       path: file === 'default' ? '/resume' : `/resume/${file}`,
       event_type: 'resume_download',
-      referrer: event.headers['referer'] || null,
+      referrer,
       screen: null,
       language: event.headers['accept-language']?.split(',')[0] || null,
       is_new_visitor: null,
@@ -82,6 +88,7 @@ export const handler = async (event) => {
       user_agent: event.headers['user-agent'] || null,
       browser: ua.browser,
       os: ua.os,
+      source,
     });
   } catch (err) {
     console.error('track-resume error:', err.message);

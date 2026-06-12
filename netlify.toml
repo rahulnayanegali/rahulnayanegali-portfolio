@@ -3,6 +3,12 @@
   publish = "apps/web/dist"
   functions = "apps/web/netlify/functions"
 
+[dev]
+  command = "pnpm --filter web client"
+  targetPort = 5173
+  port = 8888
+  framework = "#custom"
+
 [build.environment]
   NODE_VERSION = "20"
   PNPM_VERSION = "9"
@@ -50,13 +56,13 @@
 
 [[redirects]]
   from = "/resume/fullstack"
-  to = "/resume/fullstack/rahulnayanegali_fullstack.pdf"
+  to = "/.netlify/functions/track-resume?file=fullstack"
   status = 200
   force = true
 
 [[redirects]]
   from = "/resume/backend"
-  to = "/resume/backend/rahulnayanegali_backend.pdf"
+  to = "/.netlify/functions/track-resume?file=backend"
   status = 200
   force = true
 
