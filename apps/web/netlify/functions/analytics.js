@@ -8,12 +8,12 @@ function parseGeo(headers) {
       let geo;
       try { geo = JSON.parse(raw); }
       catch { geo = JSON.parse(Buffer.from(raw, 'base64').toString()); }
-      console.log('geo', geo)
       return {
         country: geo.country?.code || geo.country || null,
         state: geo.subdivision?.code || geo.subdivision?.name || null,
         city: geo.city || null,
         timezone: geo.timezone || null,
+        geo: geo
       };
     }
   } catch {}
