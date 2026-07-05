@@ -10,12 +10,13 @@ function parseGeo(headers) {
       catch { geo = JSON.parse(Buffer.from(raw, 'base64').toString()); }
       return {
         country: geo.country?.code || geo.country || null,
+        state: geo.subdivision?.code || geo.subdivision?.name || null,
         city: geo.city || null,
         timezone: geo.timezone || null,
       };
     }
   } catch {}
-  return { country: headers['x-country'] || null, city: null, timezone: null };
+  return { country: headers['x-country'] || null, state: null, city: null, timezone: null };
 }
 
 function parseUA(ua = '') {
@@ -56,7 +57,7 @@ const cors = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 204, headers: cors, body: '' };
   }
@@ -82,6 +83,7 @@ export const handler = async (event) => {
       language: body.language || null,
       is_new_visitor: body.isNewVisitor ?? null,
       country: geo.country,
+      state: geo.state,
       city: geo.city,
       timezone: geo.timezone,
       user_agent: rawUA || null,
